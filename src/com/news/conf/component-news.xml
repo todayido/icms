@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="news">
+	<!-- 后台管理的页面 开始  -->
+    <action id="newsMgrIndex" name="新闻首页" type="html" class="com.news.controller.NewsMgrController" method="newsMgrIndex">
+        <view name="新闻首页">classes/com/news/view/NewsMgrList.ftl</view>
+    </action>
+    <action id="newsMgrList" name="后台管理新闻列表" type="json" class="com.news.controller.NewsMgrController" method="newsMgrList"/>
+    <action id="newsAdd" name="新闻新增" type="html" class="com.news.controller.NewsMgrController" method="newsAdd">
+       <view name="新闻新增">classes/com/news/view/NewsAdd.ftl</view>
+    </action>
+    <action id="newsAddSubmit" name="新闻新增提交" type="json" class="com.news.controller.NewsMgrController" method="newsAddSubmit"/>
+    <action id="newsModify" name="新闻修改" type="html" class="com.news.controller.NewsMgrController" method="newsModify">
+       <view name="新闻修改">classes/com/news/view/NewsModify.ftl</view>
+    </action>
+    <action id="newsModifySubmit" name="新闻修改提交" type="json" class="com.news.controller.NewsMgrController" method="newsModifySubmit"/>
+    <action id="newsDelete" name="新闻删除" type="json" class="com.news.controller.NewsMgrController" method="newsDelete"/>
+    
+    <!-- 新闻内容管理 start -->
+    <action id="newsMgrMain" name="新闻内容管理首页" type="html" class="com.news.controller.NewsMgrTree" method="newsMgrMain">
+        <view name="新闻内容管理">classes/com/news/view/NewsMgrMain.ftl</view>
+    </action>
+    <action id="newsMgrMenu" name="新闻内容管理菜单" type="json" class="com.news.controller.NewsMgrTree" method="newsMgrMenu"/>
+    <!-- 新闻内容管理 end -->
+    
+    <!-- 后台管理的页面 开始  -->
+    
+    <!-- 前台页面新闻列表 开始 -->
+    <action id="block" name="新闻首页" type="html" class="com.news.controller.NewsBlock">
+        <view name="新闻列表">classes/com/news/view/v/NewsBlock.ftl</view>
+        <view name="新闻列表2">classes/com/news/view/v/NewsBlock2.ftl</view>
+        <view name="新闻列表-短标题">classes/com/news/view/v/NewsBlockOfShortTitle.ftl</view>
+        <view name="新闻列表-从右向左滚动列表">classes/com/news/view/v/NewsScrollRight2Left.ftl</view>
+    </action>
+    <action id="list" name="新闻列表" type="html" class="com.news.controller.NewsList">
+        <view name="新闻列表">classes/com/news/view/v/NewsList.ftl</view>
+    </action>
+    <action id="details" name="新闻详细" type="html" class="com.news.controller.NewsDetails">
+        <view name="新闻列表">classes/com/news/view/v/NewsDetails.ftl</view>
+    </action>
+    <!-- 前台页面新闻列表 结束 -->
+</actions>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- 核心映射  -->
+		<typeAlias alias="sequence" type="com.core.model.Sequence" />
+		<typeAlias alias="component" type="com.component.model.Component" />
+		<typeAlias alias="template" type="com.template.model.Template" />
+		<typeAlias alias="chanel" type="com.chanel.model.Chanel" />
+		<typeAlias alias="action" type="com.action.model.Action" />
+		<typeAlias alias="view" type="com.view.model.View" />
+		<typeAlias alias="menu" type="com.manager.model.Menu" />
+		<typeAlias alias="user" type="com.manager.model.User" />
+		<typeAlias alias="role" type="com.manager.model.Role" />
+		<typeAlias alias="depart" type="com.depart.model.Depart" />
+		<typeAlias alias="menuPermission" type="com.manager.model.MenuPermission" />
+		<typeAlias alias="permission" type="com.manager.model.Permission" />
+		<typeAlias alias="dictionary" type="com.dictionary.model.Dictionary" />
+		
+		<typeAlias alias="fragment" type="com.fragment.model.Fragment" />
+		<typeAlias alias="newsproperty" type="com.newsproperty.model.Newsproperty" />
+		<typeAlias alias="news" type="com.news.model.News" />
+		<typeAlias alias="item" type="com.item.model.Item" />
+		<typeAlias alias="pay" type="com.item.model.Pay" />
+		<typeAlias alias="payLog" type="com.item.model.Paylog" />
+		<!-- 组件映射 -->
+	</typeAliases>
+	
+	<mappers>
+		<!-- 核心映射  -->
+		<mapper resource="com/core/model/Sequence.xml" />
+		<mapper resource="com/core/model/Common.xml" />
+		<mapper resource="com/component/model/Component.xml" />
+		<mapper resource="com/template/model/Template.xml" />
+		<mapper resource="com/chanel/model/Chanel.xml" />
+		<mapper resource="com/action/model/Action.xml" />
+		<mapper resource="com/view/model/View.xml" />
+		<mapper resource="com/manager/model/Menu.xml" />
+		<mapper resource="com/manager/model/User.xml" />
+		<mapper resource="com/manager/model/Role.xml" />
+		<mapper resource="com/depart/model/Depart.xml" />
+		<mapper resource="com/manager/model/MenuPermission.xml" />
+		<mapper resource="com/manager/model/Permission.xml" />
+		<mapper resource="com/dictionary/model/Dictionary.xml" />
+		
+		<mapper resource="com/fragment/model/Fragment.xml" />
+		<mapper resource="com/newsproperty/model/Newsproperty.xml" />
+		<mapper resource="com/news/model/News.xml" />
+		<mapper resource="com/item/model/Item.xml" />
+		<mapper resource="com/item/model/Pay.xml" />
+		<mapper resource="com/item/model/Paylog.xml" />
+		
+		<!-- 组件映射 -->
+	</mappers>
+</configuration>	

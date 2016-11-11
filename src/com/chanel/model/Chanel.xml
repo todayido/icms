@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chanel.model.Chanel">
+	
+	<resultMap type="chanel" id="chanelResult">
+	   	<result property="chanelid" column="chanelid" />
+	   	<result property="chanelname" column="chanelname" />
+	   	<result property="description" column="description" />
+	   	<result property="createtime" column="createtime" />
+	</resultMap>
+	<!-- list -->
+	<select id="getChanelList" parameterType="map" resultMap="chanelResult">
+		SELECT t.* 
+		  FROM z_chanel t
+		<where>
+	    	<if test="chanelname !=null and chanelname !=''">
+	    	and t.chanelname like CONCAT(CONCAT('%', #{chanelname}),'%')
+	    	</if>
+ 	    </where>
+ 	    ORDER BY t.createtime desc
+	</select>
+	<!-- total count -->
+	<select id="getChanelCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM z_chanel t
+		<where>
+	    	<if test="chanelname !=null and chanelname !=''">
+	    	and t.chanelname like CONCAT(CONCAT('%', #{chanelname}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getChanelById" parameterType="string" resultMap="chanelResult">
+	 	SELECT t.*
+	      FROM z_chanel t 
+	     WHERE t.chanelid = #{chanelid}
+ 	</select>
+ 	<!-- save info -->
+	<insert id="saveChanel" parameterType="chanel">
+		INSERT  INTO z_chanel
+    	(
+	    	chanelid,chanelname,description,createtime
+    	) 
+    	VALUES 
+    	(
+    		#{chanelid},#{chanelname},#{description},#{createtime}
+	    )
+ 	</insert>
+ 	<!-- modify info -->
+	<update id="modifyChanel" parameterType="chanel">
+		update z_chanel
+ 		<set>
+			chanelname=#{chanelname},description=#{description},createtime=#{createtime}
+ 		</set>
+ 		<where>
+ 			chanelid = #{chanelid}
+ 		</where>
+ 	</update>
+ 	<!-- delete info -->
+	<delete id="deleteChanelById" parameterType="string"> 
+		DELETE FROM z_chanel WHERE chanelid = #{value}
+	</delete>
+</mapper>

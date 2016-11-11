@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="pay">
+    <action id="payIndex" name="支付首页" type="html" class="com.item.controller.PayController" method="payIndex">
+        <view name="支付首页">classes/com/item/view/pay/PayList.ftl</view>
+    </action>
+    <action id="payList" name="支付列表" type="json" class="com.item.controller.PayController" method="payList"/>
+    <action id="payAdd" name="支付新增" type="html" class="com.item.controller.PayController" method="payAdd">
+       <view name="支付新增">classes/com/item/view/pay/PayAdd.ftl</view>
+    </action>
+    <action id="payAddSubmit" name="支付新增提交" type="json" class="com.item.controller.PayController" method="payAddSubmit"/>
+    <action id="payModify" name="支付修改" type="html" class="com.item.controller.PayController" method="payModify">
+       <view name="支付修改">classes/com/item/view/pay/PayModify.ftl</view>
+    </action>
+    <action id="payModifySubmit" name="支付修改提交" type="json" class="com.item.controller.PayController" method="payModifySubmit"/>
+    <action id="payDelete" name="支付删除" type="json" class="com.item.controller.PayController" method="payDelete"/>
+    
+    <!-- 支付宝支付 开始  -->
+    <action id="zhifubao" name="支付宝转账充值申请" type="html" class="com.payLog.controller.PaylogController" method="zhifubao">
+       <view name="支付宝转账充值申请">classes/com/item/view/payLog/Zhifubao.ftl</view>
+    </action>
+    <action id="zhifubaoSubmit" name="支付宝转账充值申请提交" type="html" class="com.payLog.controller.PaylogController" method="zhifubaoSubmit">
+    	<view name="支付宝转账充值申请">classes/com/item/view/payLog/Zhifubao.ftl</view>
+    </action>
+    <!-- 支付宝支付 结束  -->
+    
+    <!-- 提现申请  开始 -->
+    <action id="withdraw" name="提现申请" type="html" class="com.payLog.controller.PaylogController" method="withdraw">
+    	<view name="提现申请">classes/com/item/view/payLog/Withdraw.ftl</view>
+    </action>
+    <action id="withdrawSubmit" name="提现申请" type="html" class="com.payLog.controller.PaylogController" method="withdrawSubmit">
+    	<view name="提现申请提交">classes/com/item/view/payLog/Withdraw.ftl</view>
+    </action>
+    <!-- 提现申请  结束 -->
+</actions>

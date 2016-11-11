@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions package="component">
+	<action id="componentIndex" name="组件实例" type="html" class="com.component.controller.ComponentController" method="componentIndex">
+		<view name="组件实例列表">classes/com/component/view/ComponentList.ftl</view>
+	</action>
+	<action id="componentList" name="组件实例列表" type="json" class="com.component.controller.ComponentController"  method="componentList"/>
+	<action id="componentAdd" name="添加组件实例" type="html" class="com.component.controller.ComponentController"  method="componentAdd">
+	   <view name="组件实例列表">classes/com/component/view/ComponentAdd.ftl</view>
+	</action>
+	<action id="componentAddSubmit" name="添加组件实例" type="json" class="com.component.controller.ComponentController"  method="componentAddSubmit"/>
+	<action id="componentModify" name="修改组件实例" type="html" class="com.component.controller.ComponentController"  method="componentModify">
+	   <view name="组件实例列表">classes/com/component/view/ComponentModify.ftl</view>
+	</action>
+	<action id="componentModifySubmit" name="修改组件实例" type="json" class="com.component.controller.ComponentController"  method="componentModifySubmit"/>
+	<action id="componentDelete" name="删除组件实例" type="json" class="com.component.controller.ComponentController"  method="componentDelete"/>
+</actions>

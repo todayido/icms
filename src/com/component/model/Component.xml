@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.component.model.Component">
+	
+	<resultMap type="component" id="componentResult">
+	   	<result property="componentid" column="componentid" />
+	   	<result property="componenttype" column="componenttype" />
+	   	<result property="componentname" column="componentname" />
+	   	<result property="issingleton" column="issingleton" />
+	   	<result property="description" column="description" />
+	   	<result property="confpath" column="confpath" />
+	   	<result property="priority" column="priority" />
+	</resultMap>
+	<!-- list -->
+	<select id="getComponentList" parameterType="map" resultMap="componentResult">
+		SELECT z.* 
+		  FROM z_component z
+		<where>
+		    <if test="issingleton !=null and issingleton !=''">
+            and z.issingleton=#{issingleton}
+            </if>
+	    	<if test="componentname !=null and componentname !=''">
+	    	and z.componentname like CONCAT(CONCAT('%', #{componentname}),'%')
+	    	</if>
+ 	    </where>
+ 	    ORDER BY z.priority desc
+	</select>
+	<!-- total count -->
+	<select id="getComponentCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM z_component z
+		<where>
+		    <if test="issingleton !=null and issingleton !=''">
+            and z.issingleton=#{issingleton}
+            </if>
+	    	<if test="componentname !=null and componentname !=''">
+	    	and z.componentname like CONCAT(CONCAT('%', #{componentname}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getComponentById" parameterType="string" resultMap="componentResult">
+	 	SELECT z.*
+	      FROM z_component z 
+	     WHERE z.componentid = #{componentid}
+ 	</select>
+ 	<!-- get info by componenttype -->
+ 	<select id="getComponentByType" parameterType="string" resultMap="componentResult">
+	 	SELECT z.*
+	      FROM z_component z 
+	     WHERE z.componenttype = #{componenttype}
+ 	</select>
+ 	<!-- save info -->
+	<insert id="saveComponent" parameterType="component">
+		INSERT  INTO z_component
+    	(
+	    	componentid,componenttype,componentname,issingleton,description,priority,confpath
+    	) 
+    	VALUES 
+    	(
+    		#{componentid},#{componenttype},#{componentname},#{issingleton},#{description},#{priority},#{confpath}
+	    )
+ 	</insert>
+ 	<!-- modify info -->
+	<update id="modifyComponent" parameterType="component">
+		update z_component
+ 		<set>
+			componenttype=#{componenttype},componentname=#{componentname},issingleton=#{issingleton},description=#{description},priority=#{priority},confpath=#{confpath}
+ 		</set>
+ 		<where>
+ 			componentid = #{componentid}
+ 		</where>
+ 	</update>
+ 	<!-- delete info -->
+	<delete id="deleteComponentById" parameterType="string"> 
+		DELETE FROM z_component WHERE componentid = #{value}
+	</delete>
+</mapper>

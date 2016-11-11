@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="item">
+    <action id="itemIndex" name="任务首页" type="html" class="com.item.controller.ItemController" method="itemIndex">
+        <view name="任务首页">classes/com/item/view/item/ItemList.ftl</view>
+    </action>
+    <action id="itemList" name="任务列表" type="json" class="com.item.controller.ItemController" method="itemList"/>
+    <action id="itemAdd" name="任务新增" type="html" class="com.item.controller.ItemController" method="itemAdd">
+       <view name="任务新增">classes/com/item/view/item/ItemAdd.ftl</view>
+    </action>
+    <action id="itemAddSubmit" name="任务新增提交" type="json" class="com.item.controller.ItemController" method="itemAddSubmit"/>
+    <action id="itemModify" name="任务修改" type="html" class="com.item.controller.ItemController" method="itemModify">
+       <view name="任务修改">classes/com/item/view/item/ItemModify.ftl</view>
+    </action>
+    <action id="itemModifySubmit" name="任务修改提交" type="json" class="com.item.controller.ItemController" method="itemModifySubmit"/>
+    <action id="itemDelete" name="任务删除" type="json" class="com.item.controller.ItemController" method="itemDelete"/>
+    
+    <!-- 首页 -->
+    <action id="itemBlock" name="任务首页" type="html" class="com.item.controller.ItemController" method="itemBlock">
+       <view name="任务首页">classes/com/item/view/item/ItemBlock.ftl</view>
+    </action>
+    
+    <!-- 发布新任务  -->
+    <action id="itemPublish" name="发布新任务" type="html" class="com.item.controller.ItemController" method="itemPublish">
+       <view name="发布新任务">classes/com/item/view/item/ItemPublish.ftl</view>
+    </action>
+    
+    <action id="itemPublishSubmit" name="发布新任务提交" type="html" class="com.item.controller.ItemController" method="itemPublishSubmit">
+       <view name="发布新任务提交">classes/com/item/view/item/ItemPublish.ftl</view>
+    </action>
+</actions>

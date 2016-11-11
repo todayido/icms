@@ -1,0 +1,26 @@
+div.reg{border-bottom:solid 1px #eee;width:100%;padding-left:30px;height:30px;line-height:30px;
+	background:url("/global/images/iconfont-zhuce.png") no-repeat;
+	background-size:22px;display:block;background-position:-3px;
+}
+span.reg-title{
+	width:100px;
+	padding-right:10px;
+}
+span.reg-tips{
+	color:#F3726D;
+}
+/* 提交按钮  start*/
+.button-width-280{
+	width:345px;
+	height:38px;
+	font-size:14px;
+	color:#FFFFFF;
+	cursor: pointer;
+	margin:15px 0 0 100px;
+	background-color:#F3726D;
+	border:#F3726D
+}
+.button-width-280:hover{
+	opacity:0.8;
+	color:#FFF;
+}

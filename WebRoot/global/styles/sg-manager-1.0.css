@@ -1,0 +1,148 @@
+form{margin:0px;padding:0px;}
+.west {
+    width: 200px;
+}
+
+.north {
+    height: 60px;
+    border-bottom: solid 3px #1D6BA3;
+}
+.south {
+    height: 20px;
+    color: #333;
+    line-height: 30px;
+    background: #F2F2F2;
+    text-align: center;
+    font: 12px 'Microsoft Yahei';
+    border-top: solid 3px #1D6BA3;
+}
+
+/* top */
+  .top{
+    height:30px;
+    padding-top:5px;
+    padding-right:20px;
+    text-align:right;
+    font:13px "Microsoft Yahei",arial,"Hiragino Sans GB","sans-serif";}
+  .top a{
+    height:20px;
+    display:inline-block;
+    padding:0 2px 0 2px;
+    text-align:center;
+    line-height:18px;
+    color:#333;
+    text-decoration:none;
+    border-radius:3px;
+    }
+  .top a:hover{
+    background:#1D6BA3;
+    color:#FFF;
+  }
+  .top .seq{color:#8C8C8C}
+/* left */
+
+/*一级菜单标题字体样式*/
+.panel-title {
+    height: 18px;
+    color: #000 !important;
+    font: 14px 'Microsoft Yahei';
+}
+
+/*一级菜单(导航菜单)背景样式*/
+.panel-header {
+    background: #F2F2F2;
+}
+/*tabs样式*/
+.tabs-inner {
+    line-height: 20px!important;
+}
+
+.tabs-title {
+    font: 14px "Microsoft YaHei", arial, "Hiragino Sans GB", "sans-serif";
+    font-weight: normal;
+    color: #000;
+}
+
+/*tabs选中背景颜色*/
+.tabs li.tabs-selected a.tabs-inner {
+    background:;
+}
+
+
+/**
+ * 搜索文本、按钮的样式
+*/
+.search{
+    display:block;
+    height:35px;
+    line-height:35px;
+    overflow:hidden;
+}
+.search-desc{
+    font: 14px "Microsoft YaHei", arial, "Hiragino Sans GB", "sans-serif";
+}
+.search-btn{
+    color: #FFF;
+    text-decoration: none;
+    display: inline-block;
+    font: 12px "Microsoft YaHei", arial, "Hiragino Sans GB", "sans-serif";
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    width:60px;
+    height:23px;
+    line-height:23px;
+    border:0;
+    background:#1D6BA3;
+}
+.search-btn:hover {
+    opacity:0.8;
+}
+.search-btn-width100{width:100px;}
+/**
+ * grid选中样式
+*/
+.datagrid-row-selected{background:#FFEBC0;color:#000}
+/**
+ * 表单样式
+*/
+.form-div{padding:5px;}
+.form-div span{font:12px "Microsoft YaHei", arial, "Hiragino Sans GB", "sans-serif";display:inline-block;width:100px;text-align:right;}
+.form-div input{height:25px;width:200px;}
+/**
+ * 内容表单样式
+ */
+table.gridtable{font-size:12px;width:98.5%;background:#C0C0C0;margin:4px;}
+table.gridtable .right{text-align:right;background: #F5F5F5}
+table.gridtable .left{text-align:left;}
+table.gridtable input,select{height:25px;width:200px;border:solid 1px #ABADB3;}
+table.gridtable td{background:#FFF;height:28px;padding:5px}
+table.gridtable input.readonly{background:#FFFFCC;}
+.icon-select{display:block;width:25px;height:25px;float:left;line-height:25px;background: url("/global/images/icon-leaf.gif") no-repeat;background-size:14px 11px;background-position:2px 6px}
+/**
+ * 表单信息提示
+ */
+.info-tips{color:red}
+
+/**
+ * 编辑模板文件头部样式表 
+*/
+.div-edit{margin-bottom:3px;}
+.div-edit span{font: 13px "Microsoft YaHei", arial, "Hiragino Sans GB", "sans-serif";}
+/**
+ *编辑模板下方的编辑提示
+*/
+.div-tips{padding:3px;font: 12px "Microsoft YaHei", arial, "Hiragino Sans GB", "sans-serif";}
+.div-tips span{color:red}
+
+/**
+ *
+ * 代码编辑器样式
+ *
+ */
+ .CodeMirror{
+    border:solid 1px #D4D4D4;
+    font: 14px "Hiragino Sans GB", "sans-serif";
+ }

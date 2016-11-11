@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="newsproperty">
+    <action id="newspropertyIndex" name="新闻属性首页" type="html" class="com.newsproperty.controller.NewspropertyController" method="newspropertyIndex">
+        <view name="新闻属性首页">classes/com/newsproperty/view/NewspropertyList.ftl</view>
+    </action>
+    <action id="newspropertyList" name="新闻属性列表" type="json" class="com.newsproperty.controller.NewspropertyController" method="newspropertyList"/>
+    <action id="newspropertyAdd" name="新闻属性新增" type="html" class="com.newsproperty.controller.NewspropertyController" method="newspropertyAdd">
+       <view name="新闻属性新增">classes/com/newsproperty/view/NewspropertyAdd.ftl</view>
+    </action>
+    <action id="newspropertyAddSubmit" name="新闻属性新增提交" type="json" class="com.newsproperty.controller.NewspropertyController" method="newspropertyAddSubmit"/>
+    <action id="newspropertyModify" name="新闻属性修改" type="html" class="com.newsproperty.controller.NewspropertyController" method="newspropertyModify">
+       <view name="新闻属性修改">classes/com/newsproperty/view/NewspropertyModify.ftl</view>
+    </action>
+    <action id="newspropertyModifySubmit" name="新闻属性修改提交" type="json" class="com.newsproperty.controller.NewspropertyController" method="newspropertyModifySubmit"/>
+    <action id="newspropertyDelete" name="新闻属性删除" type="json" class="com.newsproperty.controller.NewspropertyController" method="newspropertyDelete"/>
+</actions>

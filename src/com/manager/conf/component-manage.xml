@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions package="manage">
+    <action id="mainFrame" name="后台内容管理" type="html" class="com.manager.controller.MainFrameController" method="mainFrame">
+        <view name="后台管理">classes/com/manager/view/MainFrame.ftl</view>
+    </action>
+
+	<action id="leftTree" name="后台左侧管理树" type="json" class="com.manager.controller.MainFrameController" method="leftTree"/>
+	
+    <action id="setup" name="设置" type="html" class="com.manager.controller.MainFrameController" method="setup">
+        <view name="设置">classes/com/manager/view/SetUp.ftl</view>
+    </action>
+    
+    <action id="cacheIndex" name="清理缓存" type="html" class="com.manager.controller.EhcacheController" method="cacheIndex">
+    	<view name="清理缓存">classes/com/manager/view/EhcacheIndex.ftl</view>
+    </action>
+    <action id="removeAllCaches" name="清理缓存" type="json" class="com.manager.controller.EhcacheController" method="removeAllCaches"></action>
+    <action id="removeCache" name="清理缓存" type="json" class="com.manager.controller.EhcacheController" method="removeCache"></action>
+</actions>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="chanel">
+    <action id="chanelIndex" name="频道首页" type="html" class="com.chanel.controller.ChanelController" method="chanelIndex">
+        <view name="频道首页">classes/com/chanel/view/ChanelList.ftl</view>
+    </action>
+    <action id="chanelList" name="频道列表" type="json" class="com.chanel.controller.ChanelController" method="chanelList"/>
+    <action id="chanelAdd" name="频道新增" type="html" class="com.chanel.controller.ChanelController" method="chanelAdd">
+       <view name="频道新增">classes/com/chanel/view/ChanelAdd.ftl</view>
+    </action>
+    <action id="chanelAddSubmit" name="频道新增提交" type="json" class="com.chanel.controller.ChanelController" method="chanelAddSubmit"/>
+    <action id="chanelModify" name="频道修改" type="html" class="com.chanel.controller.ChanelController" method="chanelModify">
+       <view name="频道修改">classes/com/chanel/view/ChanelModify.ftl</view>
+    </action>
+    <action id="chanelModifySubmit" name="频道修改提交" type="json" class="com.chanel.controller.ChanelController" method="chanelModifySubmit"/>
+    <action id="chanelDelete" name="频道删除" type="json" class="com.chanel.controller.ChanelController" method="chanelDelete"/>
+    <action id="chanelEdit" name="频道模板编辑" type="html" class="com.chanel.controller.ChanelController" method="chanelEdit">
+        <view name="频道模板编辑">classes/com/chanel/view/ChanelEdit.ftl</view>
+    </action>
+    <action id="chanelEditSubmit" name="频道模板编辑提交" type="json" class="com.chanel.controller.ChanelController" method="chanelEditSubmit"/>
+</actions>

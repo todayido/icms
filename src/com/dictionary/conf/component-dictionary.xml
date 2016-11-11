@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="dictionary">
+    <action id="dictionaryIndex" name="字典首页" type="html" class="com.dictionary.controller.DictionaryController" method="dictionaryIndex">
+        <view name="字典首页">classes/com/dictionary/view/DictionaryList.ftl</view>
+    </action>
+    <action id="dictionaryList" name="字典列表" type="json" class="com.dictionary.controller.DictionaryController" method="dictionaryList"/>
+    <action id="dictionaryAdd" name="字典新增" type="html" class="com.dictionary.controller.DictionaryController" method="dictionaryAdd">
+       <view name="字典新增">classes/com/dictionary/view/DictionaryAdd.ftl</view>
+    </action>
+    <action id="dictionaryAddSubmit" name="字典新增提交" type="json" class="com.dictionary.controller.DictionaryController" method="dictionaryAddSubmit"/>
+    <action id="dictionaryModify" name="字典修改" type="html" class="com.dictionary.controller.DictionaryController" method="dictionaryModify">
+       <view name="字典修改">classes/com/dictionary/view/DictionaryModify.ftl</view>
+    </action>
+    <action id="dictionaryModifySubmit" name="字典修改提交" type="json" class="com.dictionary.controller.DictionaryController" method="dictionaryModifySubmit"/>
+    <action id="dictionaryDelete" name="字典删除" type="json" class="com.dictionary.controller.DictionaryController" method="dictionaryDelete"/>
+</actions>

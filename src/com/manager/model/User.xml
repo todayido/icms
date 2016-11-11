@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.user.model.User">
+	
+	<resultMap type="user" id="userResult">
+	   	<result property="user_id" column="user_id" />
+	   	<result property="user_name" column="user_name" />
+	   	<result property="password" column="password" />
+	   	<result property="user_alias" column="user_alias" />
+	   	<result property="depart_id" column="depart_id" />
+	   	<result property="duty_id" column="duty_id" />
+	   	<result property="email" column="email" />
+	   	<result property="question" column="question" />
+	   	<result property="answer" column="answer" />
+	   	<result property="qq_number" column="qq_number" />
+	   	<result property="phone" column="phone" />
+	   	<result property="priority" column="priority" />
+	   	<result property="reg_time" column="reg_time" />
+	   	<result property="login_error_times" column="login_error_times" />
+	   	<result property="last_login_time" column="last_login_time" />
+	   	<result property="last_login_ip" column="last_login_ip" />
+	   	<result property="login_times" column="login_times" />
+	   	<result property="status" column="status" />
+	</resultMap>
+	<!-- list -->
+	<select id="getUserList" parameterType="map" resultType="map">
+		  SELECT U.*,D.NAME DEPART_NAME,
+         	(SELECT DIC.DIC_VALUE
+               FROM Z_DICTIONARY DIC
+              WHERE U.DUTY_ID = DIC.DIC_KEY
+                AND DIC.DIC_NAME = 'duty_type') DUTY_NAME
+            FROM Z_USER U
+    		LEFT JOIN Z_DEPART D
+              ON D.DEPART_ID = U.DEPART_ID
+		<where>
+	    	<if test="user_name !=null and user_name !=''">
+	    	and u.user_name like CONCAT(CONCAT('%', #{user_name}),'%')
+	    	</if>
+	    	<if test="depart_id !=null and depart_id !=''">
+	    	and d.depart_id = #{depart_id}
+	    	</if>
+	    	<if test="duty_id !=null and duty_id !=''">
+	    	and u.duty_id = #{duty_id}
+	    	</if>
+	    	<if test="status !=null and status !=''">
+	    	and u.status = #{status}
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- total count -->
+	<select id="getUserCount" parameterType="map" resultType="int">
+		SELECT count(0)
+		  FROM z_user u LEFT JOIN z_depart depart ON depart.depart_id = u.depart_id
+		<where>
+	    	<if test="user_name !=null and user_name !=''">
+	    	and u.user_name like CONCAT(CONCAT('%', #{user_name}),'%')
+	    	</if>
+	    	<if test="depart_id !=null and depart_id !=''">
+	    	and depart.depart_id = #{depart_id}
+	    	</if>
+	    	<if test="duty_id !=null and duty_id !=''">
+	    	and u.duty_id = #{duty_id}
+	    	</if>
+	    	<if test="status !=null and status !=''">
+	    	and u.status = #{status}
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+	<select id="getUserById" parameterType="string" resultType="user">
+	 	SELECT t.*
+	      FROM z_user t 
+	     WHERE t.user_id = #{user_id}
+ 	</select>
+ 	<select id="getUserAndDepartInfoById" parameterType="string" resultType="map">
+	 	SELECT u.*,depart.depart_id DEPART_ID,depart.name DEPART_NAME
+	      FROM z_user u LEFT JOIN z_depart depart ON u.depart_id=depart.depart_id 
+	     WHERE u.user_id = #{user_id}
+ 	</select>
+ 	<!-- save info -->
+	<insert id="saveUser" parameterType="user">
+		INSERT  INTO z_user
+    	(
+	    	user_id,user_name,password,depart_id,user_alias,duty_id,email,question,answer,qq_number,phone,priority,reg_time,login_error_times,last_login_time,last_login_ip,login_times,status
+    	) 
+    	VALUES 
+    	(
+    		#{user_id},#{user_name},#{password},#{depart_id},#{user_alias},#{duty_id},#{email},#{question},#{answer},#{qq_number},#{phone},#{priority},#{reg_time},#{login_error_times},#{last_login_time},#{last_login_ip},#{login_times},#{status}
+	    )
+ 	</insert>
+ 	<!-- modify info -->
+	<update id="modifyUser" parameterType="user">
+		update z_user
+ 		<set>
+ 			<if test="user_name !=null and user_name !=''">
+	    		user_name=#{user_name},
+	    	</if>
+	    	<if test="password !=null and password !=''">
+	    		password=#{password},
+	    	</if>
+	    	<if test="depart_id !=null">
+	    		depart_id=#{depart_id},
+	    	</if>
+	    	<if test="user_alias !=null">
+	    		user_alias=#{user_alias},
+	    	</if>
+	    	<if test="duty_id !=null">
+	    		duty_id=#{duty_id},
+	    	</if>
+	    	<if test="email !=null">
+	    		email=#{email},
+	    	</if>
+	    	<if test="password !=null">
+	    		password=#{password},
+	    	</if>
+	    	<if test="question !=null">
+	    		question=#{question},
+	    	</if>
+	    	<if test="answer !=null">
+	    		answer=#{answer},
+	    	</if>
+	    	<if test="qq_number !=null">
+	    		qq_number=#{qq_number},
+	    	</if>
+	    	<if test="phone !=null">
+	    		phone=#{phone},
+	    	</if>
+	    	<if test="priority !=null">
+	    		priority=#{priority},
+	    	</if>
+	    	<if test="reg_time !=null">
+	    		reg_time=#{reg_time},
+	    	</if>
+	    	<if test="login_error_times !=null">
+	    		login_error_times=#{login_error_times},
+	    	</if>
+	    	<if test="last_login_time !=null">
+	    		last_login_time=#{last_login_time},
+	    	</if>
+	    	<if test="last_login_ip !=null">
+	    		last_login_ip=#{last_login_ip},
+	    	</if>
+	    	<if test="login_times !=null">
+	    		login_times=#{login_times},
+	    	</if>
+	    	<if test="status !=null">
+	    		status=#{status},
+	    	</if>
+ 		</set>
+ 		where user_id = #{user_id}
+ 	</update>
+ 	<!-- 根据用户ID修改密码 -->
+ 	<update id="modifyPasswordByUserId" parameterType="user">
+ 		update z_user set password = #{password} where user_id = #{user_id}
+ 	</update>
+ 	
+ 	<!-- delete info -->
+	<delete id="deleteUserById" parameterType="string"> 
+		DELETE FROM z_user WHERE user_id = #{value}
+	</delete>
+	<delete id="deleteUserRoleById" parameterType="string"> 
+		DELETE FROM z_user_role WHERE user_role_id = #{value}
+	</delete>
+	
+	<!-- 根据用户ID获取该用户的所有角色 -->
+	<select id="getUserRoleList" parameterType="map" resultType="map">
+		SELECT A.USER_ROLE_ID,A.USER_ID,B.* FROM Z_USER_ROLE A 
+	 LEFT JOIN Z_ROLE B 
+	        ON A.ROLE_ID = B.ROLE_ID 
+	     <where>
+	     	<if test="user_id !=null and user_id !=''">
+	    	A.USER_ID =#{user_id}
+	    	</if>
+	    	<if test="role_name !=null and role_name !=''">
+	    	AND B.ROLE_NAME LIKE CONCAT(CONCAT('%', #{role_name}),'%')
+	    	</if>
+	    </where>
+	</select>
+	<select id="getUserRoleCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) FROM Z_USER_ROLE A 
+	 LEFT JOIN Z_ROLE B 
+	        ON A.ROLE_ID = B.ROLE_ID 
+	     <where>
+	     	<if test="user_id !=null and user_id !=''">
+	    	A.USER_ID =#{user_id}
+	    	</if>
+	    	<if test="role_name !=null and role_name !=''">
+	    	AND B.ROLE_NAME LIKE CONCAT(CONCAT('%', #{role_name}),'%')
+	    	</if>
+	    </where>
+	</select>
+	
+	<!-- 根据用户ID获取非该用户的所有角色 -->
+	<select id="getOtherRoleList" parameterType="map" resultType="map">
+		SELECT * 
+		  FROM Z_ROLE A 
+		 <where>
+		 	A.ROLE_ID NOT IN(SELECT B.ROLE_ID FROM Z_USER_ROLE B WHERE B.USER_ID IN (#{user_id}))
+	    	<if test="role_name !=null and role_name !=''">
+	    	AND A.ROLE_NAME LIKE CONCAT(CONCAT('%', #{role_name}),'%')
+	    	</if>
+	    </where>
+	</select>
+	<select id="getOtherRoleCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM Z_ROLE A 
+		 <where>
+		 	A.ROLE_ID NOT IN(SELECT B.ROLE_ID FROM Z_USER_ROLE B WHERE B.USER_ID IN (#{user_id}))
+	    	<if test="role_name !=null and role_name !=''">
+	    	AND A.ROLE_NAME LIKE CONCAT(CONCAT('%', #{role_name}),'%')
+	    	</if>
+	    </where>
+	</select>
+	<!-- 根据用户ID获取用户角色 -->
+	<select id="getRolesListByUserId" parameterType="map" resultType="map">
+		SELECT * FROM z_role a WHERE a.role_id IN(
+	       SELECT t.role_id FROM z_user_role t WHERE t.user_id=#{value})
+	</select>
+	<insert id="addRoleToUser" parameterType="map">
+		INSERT  INTO z_user_role
+    	(
+	    	user_role_id, user_id, role_id
+    	) 
+    	VALUES 
+    	(
+    		#{user_role_id},#{user_id},#{role_id}
+	    )
+ 	</insert>
+ 	
+ 	<!-- 根据登录名获取用户信息 -->
+ 	<select id="getUserInfo" parameterType="map" resultMap="userResult">
+		SELECT * FROM Z_USER T WHERE T.USER_NAME=#{user_name}
+		<if test="status !=null and status !=''">
+    	AND T.STATUS = #{status}
+    	</if>
+	</select>
+	
+	<update id="modifyUserErrorTimes" parameterType="user">
+		UPDATE z_user SET LOGIN_ERROR_TIMES=LOGIN_ERROR_TIMES+1 WHERE user_id=#{user_id};
+	</update>
+</mapper>

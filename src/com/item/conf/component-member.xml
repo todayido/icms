@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="member">
+    <action id="memberInfo" name="会员基本信息" type="html" class="com.item.controller.MemberController" method="memberInfo">
+        <view name="会员基本信息">classes/com/item/view/member/MemberInfo.ftl</view>
+    </action>
+    
+    <action id="modifyPass" name="密码修改" type="html" class="com.item.controller.MemberController" method="modifyPass">
+        <view name="密码修改">classes/com/item/view/member/ModifyPass.ftl</view>
+    </action>
+    
+    <action id="modifyPassSumit" name="密码修改" type="html" class="com.item.controller.MemberController" method="modifyPassSumit">
+        <view name="密码修改">classes/com/item/view/member/ModifyPass.ftl</view>
+    </action>
+    
+</actions>

@@ -1,0 +1,109 @@
+/* reset */
+html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,input,abbr,img{margin:0;padding:0;}
+body,input,textarea,a{font:12px "Microsoft YaHei","arial","Hiragino Sans GB","sans-serif";}
+img{border:0px;}
+ul{list-style-type:none;}
+iframe{border:none;}
+input:focus{outline:none;}
+html,body{margin:0px;padding:0px;}
+.center {text-align: center}
+a:active{outline: none}
+.top{
+    height:35px;line-height:35px;widht:100%;
+    text-align:center;margin:auto;background:#F3726D}
+.seq{margin:0 50px 0 3px;float:right}
+.seq a{color:#5C5C5C;text-decoration:none}
+.seq a:hover{color:#999;}
+.seq span{color:#DADADA}
+
+/**
+ * 导航菜单
+ */
+.nva{float:left;}
+.nva li{padding:5px;display:inline-block;}
+.nva li a{display:block;line-height:25px;text-align:center;text-decoration:none;color:#FFF;}
+.nva li a:hover{color:#F5F5F5;}
+/**
+ * 在线客服
+ */
+.online-service{float:right}
+.online-service li{padding:5px;display:inline-block;height:30px;}
+.online-service li a{display:block;padding-left:25px;line-height:20px;color:#fff;text-decoration:none;
+	background:url("/global/images/iconfont-kefu.png") no-repeat;background-size:20px 20px}
+.online-service li a:hover{color:#F5F5F5;background:url("/global/images/iconfont-kefu-hover.png") no-repeat;background-size:20px 20px}
+
+/**
+ *新闻list列表样式
+ */
+div.news-list{display:block;}
+div.news-list-title{border-bottom:solid 1px #F5F5F5;width:100%;padding-left:30px;height:30px;line-height:30px;
+	background:url("/global/images/iconfont-renwuliebiao.png") no-repeat;
+	background-size:30px;display:block;background-position:-3px;
+}
+div.news-list-content{margin-top:5px;}
+div.news-list-content ul li{padding-top:3px;background:url("/global/images/iconfont-dian.png") no-repeat;background-position:-5px 5px ;background-size:15px;}
+div.news-list-content ul li a{padding-left:10px;color:#000;}
+div.news-list-content ul li a:visited{color:#000}
+div.news-list-content ul li a:hover{color:#F3726D;text-decoration: none}
+span.news-list-date{position:relative;float:right;font-size:12px;}
+/**
+ *新闻block列表样式
+ */
+div.news-block{display:block;}
+div.news-block-content{margin-top:5px;}
+div.news-block-title{display:block;width:100%;height:25px;line-height:25px;border-bottom:solid 1px #F5F5F5}
+span.news-block-title-name a{display:inline-block;color:#000;text-decoration:none;height:23px;line-height:23px;border-bottom:solid 2px #F3726D}
+span.news-block-title-more {position:relative;float:right}
+span.news-block-title-more a{color:#000;text-decoration:none;}
+
+div.news-block-content ul li{padding-top:3px;background: url("/global/images/iconfont-dian.png") no-repeat;background-position:-5px 5px ;background-size:15px;}
+div.news-block-content ul li a{padding-left:10px;color:#000}
+div.news-block-content ul li a:visited{color:#000}
+div.news-block-content ul li a:hover{color:#F3726D;text-decoration: none}
+span.news-block-date{position:relative;float:right;font-size:12px;}
+/**
+ * 新闻详细
+*/
+div.news-details{margin:auto}
+div.news-details-author{padding:8px;font-size:10px;border-bottom:solid 1px #F5F5F5;color:#999}
+div.news-details-share{position:relative;float: right;margin-top:-8px;}
+
+/**
+ *分享：微信，微博，空间
+ */
+a.news-details-share-sina{display:inline-block;width:36px;height:30px;
+	background:url("/global/images/sharebg.gif") no-repeat;background-position:0px 0px;}
+a.news-details-share-sina:hover{background:url("/global/images/sharebg.gif") no-repeat;background-position:0px -151px;}
+
+a.news-details-share-zone{display:inline-block;width:36px;height:30px;
+	background:url("/global/images/sharebg.gif") no-repeat;background-position:0px -38px;}
+a.news-details-share-zone:hover{background:url("/global/images/sharebg.gif") no-repeat;background-position:0px -189px;}
+
+a.news-details-share-weixin{display:inline-block;width:36px;height:30px;
+	background:url("/global/images/sharebg.gif") no-repeat;background-position:0px -114px;}
+a.news-details-share-weixin:hover{background:url("/global/images/sharebg.gif") no-repeat;background-position:0px -265px;}
+
+.news-details-content{margin-top:15px;}
+/*网站底部*/
+.footer{background:#333;color:#fff;padding: 20px 0;margin-top:10px;display: inline-block;width: 100%;}
+.footer a{text-decoration:none;color:#fff}
+.footer a:hover{text-decoration:underline;color:#fff}
+
+a.back-to-top{display:block;width:35px;height:35px;position:fixed;right:20px;bottom:20px;
+	background:url("/global/images/iconfont-huidaodingbu.png") no-repeat;background-size:35px;}
+
+/*
+ * 分页
+*/
+.pagination{display:block;text-align:center;}
+.pagination ul{list-style-type: none;}
+.pagination ul li{display:inline-block;}
+.pagination ul li a{display:block;height:25px;line-height:25px;color:#F3726D;border:solid 1px #F3726D;text-decoration:none}
+.pagination ul li a:hover{background-color:#F3726D;color:#fff}
+a.page-previous{width:50px}
+a.page-next{width:50px;}
+a.page{width:25px;}
+.page-current{background-color:#F3726D;color:#fff!important}
+
+.btn-theme-red01{background-color:#F3726D;color:#fff!important}
+.btn-theme-red01:hover{opacity:0.8}

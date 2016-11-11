@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shaoguang.core.model.Sequence">
+	<select id="getPrimaryKey" resultType="string" parameterType="string">
+		SELECT Z.NEXTVALUE 
+		  FROM Z_SEQUENCE Z
+		 WHERE Z.TABLENAME = #{value}
+	</select>	
+	<update id="modifyPrimaryKey" parameterType="string">
+		UPDATE Z_SEQUENCE 
+		   SET NEXTVALUE = NEXTVALUE+1
+		 WHERE TABLENAME = #{value}
+	</update>
+</mapper>

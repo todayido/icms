@@ -1,0 +1,1 @@
+<p><img src="/static/image/20160218/1455760364283000391.jpg" title="1455760364283000391.jpg" alt="main-top-banner-red.jpg" width="1223" height="243" style="width: 1223px; height: 243px;"/></p>

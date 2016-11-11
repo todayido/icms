@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components>
+	<component src="com/manager/conf/component-manage.xml" />
+	<component src="com/component/conf/component-component.xml" />
+	<component src="com/template/conf/component-template.xml" />
+	<component src="com/chanel/conf/component-chanel.xml" />
+	<component src="com/action/conf/component-action.xml" />
+	<component src="com/view/conf/component-view.xml" />
+	<component src="com/manager/conf/component-user.xml" />
+	<component src="com/manager/conf/component-role.xml" />
+	<component src="com/manager/conf/component-menu-permission.xml" />
+	<component src="com/manager/conf/component-permission.xml" />
+	<component src="com/manager/conf/component-menu.xml" />
+	<component src="com/depart/conf/component-depart.xml" />
+	<component src="com/dictionary/conf/component-dictionary.xml" />
+	<component src="com/login/conf/component-login.xml" />
+	<component src="com/login/conf/component-register.xml" />
+
+	<component src="com/fragment/conf/component-fragment.xml" />
+	<component src="com/newsproperty/conf/component-newsproperty.xml" />
+	<component src="com/news/conf/component-news.xml" />
+	<!-- 自定义组建 -->
+	<component src="com/item/conf/component-item.xml" />
+	<component src="com/item/conf/component-member.xml" />
+	<component src="com/item/conf/component-pay.xml" />
+	<component src="com/item/conf/component-payLog.xml" />
+</components>

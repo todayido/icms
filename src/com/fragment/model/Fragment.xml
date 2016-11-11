@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fragment.model.Fragment">
+	
+	<resultMap type="fragment" id="fragmentResult">
+	   	<result property="blockid" column="blockid" />
+	   	<result property="fragmentname" column="fragmentname" />
+	   	<result property="description" column="description" />
+	   	<result property="path" column="path" />
+	   	<result property="createtime" column="createtime" />
+	</resultMap>
+	<!-- list -->
+	<select id="getFragmentList" parameterType="map" resultMap="fragmentResult">
+		SELECT t.* 
+		  FROM t_fragment t
+		<where>
+	    	<if test="blockid !=null and blockid !=''">
+	    	and t.blockid=#{blockid}
+	    	</if>
+	    	<if test="fragmentname !=null and fragmentname !=''">
+	    	and t.fragmentname like CONCAT(CONCAT('%', #{fragmentname}),'%')
+	    	</if>
+ 	    </where>
+ 	    ORDER BY t.createtime desc
+	</select>
+	<!-- total count -->
+	<select id="getFragmentCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM t_fragment t
+		<where>
+	    	<if test="blockid !=null and blockid !=''">
+	    	and t.blockid=#{fragmentid}
+	    	</if>
+	    	<if test="fragmentname !=null and fragmentname !=''">
+	    	and t.fragmentname like CONCAT(CONCAT('%', #{fragmentname}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getFragmentById" parameterType="string" resultMap="fragmentResult">
+	 	SELECT t.*
+	      FROM t_fragment t 
+	     WHERE t.blockid = #{blockid}
+ 	</select>
+ 	<!-- save info -->
+	<insert id="saveFragment" parameterType="fragment">
+		INSERT  INTO t_fragment
+    	(
+	    	blockid,fragmentname,description,path,createtime
+    	) 
+    	VALUES 
+    	(
+    		#{blockid},#{fragmentname},#{description},#{path},#{createtime}
+	    )
+ 	</insert>
+ 	<!-- modify info -->
+	<update id="modifyFragment" parameterType="fragment">
+		update t_fragment
+ 		<set>
+			fragmentname=#{fragmentname},description=#{description},createtime=#{createtime}
+ 		</set>
+ 		<where>
+ 			blockid = #{blockid}
+ 		</where>
+ 	</update>
+ 	<!-- delete info -->
+	<delete id="deleteFragmentById" parameterType="string"> 
+		DELETE FROM t_fragment WHERE blockid = #{value}
+	</delete>
+</mapper>
