@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.model.Role">
+	<resultMap type="role" id="roleResult">
+	   	<result property="role_id" column="role_id" />
+	   	<result property="role_name" column="role_name" />
+	   	<result property="description" column="description" />
+	   	<result property="priority" column="priority" />
+	   	<result property="issuper" column="issuper" />
+	</resultMap>
+	<!-- list -->
+	<select id="getRoleList" parameterType="map" resultMap="roleResult">
+		SELECT t.* 
+		  FROM z_role t
+		<where>
+	    	<if test="role_name != null and role_name != ''">
+	    	and t.role_name like CONCAT(CONCAT('%', #{role_name}),'%')
+	    	</if>
+ 	    </where>
+ 	    order by priority desc
+	</select>
+	<!-- total count -->
+	<select id="getRoleCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM z_role t
+		<where>
+	    	<if test="role_name != null and role_name != ''">
+	    	and t.role_name like CONCAT(CONCAT('%', #{role_name}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getRoleById" parameterType="string" resultMap="roleResult">
+	 	SELECT t.*
+	      FROM z_role t 
+	     WHERE t.role_id = #{role_id}
+ 	</select>
+ 	<!-- info save -->
+	<insert id="saveRole" parameterType="role">
+		INSERT  INTO z_role
+    	(
+	    	role_id,role_name,description,priority,issuper
+    	) 
+    	VALUES 
+    	(
+    		#{role_id},#{role_name},#{description},#{priority},#{issuper}
+	    )
+ 	</insert>
+ 	<!-- info modify -->
+	<update id="modifyRole" parameterType="role">
+		update z_role
+ 		<set>
+ 			<if test="role_name != null">
+	    		role_name=#{role_name},
+	    	</if>
+ 			<if test="description != null">
+	    		description=#{description},
+	    	</if>
+ 			<if test="priority != null">
+	    		priority=#{priority},
+	    	</if>
+ 			<if test="issuper != null">
+	    		issuper=#{issuper},
+	    	</if>
+ 		</set>
+ 		<where>
+ 			role_id = #{role_id}
+ 		</where>
+ 	</update>
+ 	<!-- info delete -->
+	<delete id="deleteRoleById" parameterType="string"> 
+		DELETE FROM z_role WHERE role_id = #{value}
+	</delete>
+	
+	<delete id="deleteRolePermissionById" parameterType="map"> 
+		DELETE FROM z_role_permission
+		<where>
+	     	<if test="role_permission_id !=null and role_permission_id !=''">
+	    	AND ROLE_PERMISSION_ID =#{role_permission_id}
+	    	</if>
+	    	<if test="permission_id !=null and role_permission_id !=''">
+	    	AND PERMISSION_ID =#{permission_id}
+	    	</if>
+	    	<if test="role_id !=null and role_id !=''">
+	    	AND ROLE_ID =#{role_id}
+	    	</if>
+	    </where>
+	</delete>
+	
+	<!-- 根据角色ID获取该角色的所有权限 -->
+	<select id="getRolePermissionList" parameterType="map" resultType="map">
+		SELECT A.ROLE_PERMISSION_ID,A.ROLE_ID,B.* FROM Z_ROLE_PERMISSION A 
+	 LEFT JOIN Z_MENU_PERMISSION B 
+	        ON A.PERMISSION_ID = B.PERMISSION_ID
+	     <where>
+	     	<if test="role_id !=null and role_id !=''">
+	    	A.ROLE_ID =#{role_id}
+	    	</if>
+	    </where>
+		 UNION
+		SELECT A.ROLE_PERMISSION_ID,A.ROLE_ID,B.* FROM Z_ROLE_PERMISSION A 
+	 LEFT JOIN Z_PERMISSION B 
+	        ON A.PERMISSION_ID = B.PERMISSION_ID
+	     <where>
+	     	<if test="role_id !=null and role_id !=''">
+	    	A.ROLE_ID =#{role_id}
+	    	</if>
+	    </where>
+	</select>
+	
+	<insert id="addPermissionToRole" parameterType="map">
+		INSERT  INTO z_role_permission
+    	(
+	    	role_permission_id, role_id, permission_id
+    	) 
+    	VALUES 
+    	(
+    		#{role_permission_id},#{role_id},#{permission_id}
+	    )
+ 	</insert>
+ 	<!-- 根据用户名获取该用户的角色ID -->
+ 	<select id="getRolesByUsername" parameterType="string" resultType="string">
+		SELECT T.ROLE_ID 
+		  FROM Z_USER_ROLE T 
+		 WHERE T.USER_ID=(
+		 			SELECT T2.USER_ID 
+		 			  FROM Z_USER T2 
+		 			 WHERE T2.USER_NAME=#{value}
+		 	    ) 
+	</select>
+	
+	<!-- 获取包含该资源的所有角色 -->
+	<select id="getRolesByResourceId" resultType="string" parameterType="string">
+	SELECT A.ROLE_ID 
+         FROM Z_ROLE_PERMISSION A 
+        WHERE A.PERMISSION_ID IN( 
+				 SELECT T.PERMISSION_ID 
+				   FROM Z_PERMISSION T 
+				  WHERE T.RESOURCE=#{value}
+			)
+	UNION 
+	SELECT A.ROLE_ID 
+	         FROM Z_ROLE_PERMISSION A 
+	        WHERE A.PERMISSION_ID IN( 
+					 SELECT T.PERMISSION_ID 	
+					   FROM Z_MENU_PERMISSION T 
+					  WHERE T.RESOURCE=#{value}
+				)
+    </select>
+    <!-- 根据角色ID获取该角色的所有权限 -->
+    <select id="getPermissionsBelongsToARole" parameterType="map" resultType="map">
+    	SELECT * FROM z_permission p WHERE p.permission_id IN(SELECT r.permission_id FROM z_role_permission r WHERE r.role_id=#{role_id})
+    	<if test="permission_name != null and permission_name !='' ">
+    		and p.permission_name LIKE CONCAT(CONCAT('%', #{permission_name}),'%')
+    	</if>
+    </select>
+    
+    <select id="getPermissionsCountBelongsToARole" parameterType="map" resultType="int">
+    	SELECT count(1) FROM z_permission p WHERE p.permission_id IN(SELECT r.permission_id FROM z_role_permission r WHERE r.role_id=#{role_id})
+    	<if test="permission_name != null and permission_name !='' ">
+    		and p.permission_name LIKE CONCAT(CONCAT('%', #{permission_name}),'%')
+    	</if>
+    </select>
+    
+    <!-- 根绝角色ID查询不属于该角色的权限 -->
+    <select id="getPermissionsNotBelongsToARole" parameterType="map" resultType="map">
+    	SELECT * FROM z_permission p WHERE p.permission_id not IN(SELECT r.permission_id FROM z_role_permission r WHERE r.role_id=#{role_id})
+    	<if test="permission_name != null and permission_name !='' ">
+    		and p.permission_name LIKE CONCAT(CONCAT('%', #{permission_name}),'%')
+    	</if>
+    </select>
+    
+    <select id="getPermissionsCountNotBelongsToARole" parameterType="map" resultType="int">
+    	SELECT count(1) FROM z_permission p WHERE p.permission_id not IN(SELECT r.permission_id FROM z_role_permission r WHERE r.role_id=#{role_id})
+    	<if test="permission_name != null and permission_name !='' ">
+    		and p.permission_name LIKE CONCAT(CONCAT('%', #{permission_name}),'%')
+    	</if>
+    </select>
+    
+    <delete id="deletePermissionFromARole" parameterType="map">
+    	DELETE FROM z_role_permission WHERE permission_id=#{permission_id} and role_id=#{role_id}
+    </delete>
+    
+</mapper>

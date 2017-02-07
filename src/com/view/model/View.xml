@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.view.model.View">
+	
+	<resultMap type="view" id="viewResult">
+	   	<result property="viewid" column="viewid" />
+	   	<result property="viewtype" column="viewtype" />
+	   	<result property="viewname" column="viewname" />
+	   	<result property="viewpath" column="viewpath" />
+	   	<result property="description" column="description" />
+	   	<result property="createtime" column="createtime" />
+	</resultMap>
+	<!-- list -->
+	<select id="getViewList" parameterType="map" resultMap="viewResult">
+		SELECT t.* FROM z_view t 
+		<where>
+	    	<if test="viewname !=null and viewname !=''">
+	    	and t.viewname like CONCAT(CONCAT('%', #{viewname}),'%')
+	    	</if>
+	    	<if test="viewtype !=null and viewtype !=''">
+	    	and t.viewtype = #{viewtype}
+	    	</if>
+ 	    </where>
+ 	    ORDER BY t.createtime desc
+	</select>
+	<!-- total count -->
+	<select id="getViewCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM z_view t
+		<where>
+	    	<if test="viewname !=null and viewname !=''">
+	    	and t.viewname like CONCAT(CONCAT('%', #{viewname}),'%')
+	    	</if>
+	    	<if test="viewtype !=null and viewtype !=''">
+	    	and t.viewtype = #{viewtype}
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getViewById" parameterType="string" resultMap="viewResult">
+	 	SELECT t.*
+	      FROM z_view t 
+	     WHERE t.viewid = #{viewid}
+ 	</select>
+ 	<!-- save info -->
+	<insert id="saveView" parameterType="view">
+		INSERT  INTO z_view
+    	(
+	    	viewid,viewtype,viewname,viewpath,description,createtime
+    	) 
+    	VALUES 
+    	(
+    		#{viewid},#{viewtype},#{viewname},#{viewpath},#{description},#{createtime}
+	    )
+ 	</insert>
+ 	<!-- modify info -->
+	<update id="modifyView" parameterType="view">
+		update z_view
+ 		<set>
+			<if test="viewname !=null">
+	    		viewname=#{viewname},
+	    	</if>
+	    	<if test="viewpath !=null">
+	    		viewpath=#{viewpath},
+	    	</if>
+	    	<if test="description !=null">
+	    		description=#{description},
+	    	</if>
+	    	<if test="createtime !=null">
+	    		createtime=#{createtime},
+	    	</if>
+ 		</set>
+ 		<where>
+ 			viewid = #{viewid}
+ 		</where>
+ 	</update>
+ 	<!-- delete info -->
+	<delete id="deleteViewById" parameterType="string"> 
+		DELETE FROM z_view WHERE viewid = #{value}
+	</delete>
+</mapper>

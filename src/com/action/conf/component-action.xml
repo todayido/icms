@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="action">
+    <action id="actionIndex" name="动作首页" type="html" class="com.action.controller.ActionController" method="actionIndex">
+        <view name="动作首页">classes/com/action/view/ActionList.ftl</view>
+    </action>
+    <action id="actionList" name="动作列表" type="json" class="com.action.controller.ActionController" method="actionList"/>
+    <action id="actionAdd" name="动作新增" type="html" class="com.action.controller.ActionController" method="actionAdd">
+       <view name="动作新增">classes/com/action/view/ActionAdd.ftl</view>
+    </action>
+    <action id="actionAddSubmit" name="动作新增提交" type="json" class="com.action.controller.ActionController" method="actionAddSubmit"/>
+    <action id="actionModify" name="动作修改" type="html" class="com.action.controller.ActionController" method="actionModify">
+       <view name="动作修改">classes/com/action/view/ActionModify.ftl</view>
+    </action>
+    <action id="actionModifySubmit" name="动作修改提交" type="json" class="com.action.controller.ActionController" method="actionModifySubmit"/>
+    <action id="actionDelete" name="动作删除" type="json" class="com.action.controller.ActionController" method="actionDelete"/>
+    
+    <!-- 组件动作首页 -->
+    <action id="componentActionIndex" name="组件动作首页" type="html" class="com.action.controller.ComponentActionController" method="componentActionIndex">
+    	<view name="组件动作首页">classes/com/action/view/ComponentActionList.ftl</view>
+    </action>
+    <!-- 组件动作列表 -->
+    <action id="componentActionList" name="组件动作列表" type="json" class="com.action.controller.ComponentActionController" method="componentActionList"/>
+    <!-- 组件动作修改 -->
+    <action id="componentActionModify" name="组件动作配置" type="html" class="com.action.controller.ComponentActionController" method="componentActionModify">
+    	<view name="组件动作修改">classes/com/action/view/ComponentActionModify.ftl</view>
+    </action>
+    <!-- 组件动作修改提交 -->
+    <action id="componentActionModifySubmit" name="组件动作配置修改提交" type="json" class="com.action.controller.ComponentActionController" method="componentActionModifySubmit"/>
+</actions>

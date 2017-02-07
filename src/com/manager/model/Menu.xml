@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shaoguang.core.model.Menu">
+	<resultMap type="menu" id="menuResult">
+	   	<result property="menuid" column="menuid" />
+	   	<result property="menuname" column="menuname" />
+	   	<result property="parentid" column="parentid" />
+	   	<result property="priority" column="priority" />
+	   	<result property="hasnext" column="hasnext" />
+	   	<result property="menuurl" column="menuurl" />
+	   	<result property="display" column="display" />
+	</resultMap>
+	<!-- 后台管理导航树 -->
+	<select id="getLeftTreeByParentId" resultType="menu" parameterType="java.util.Map">
+	   SELECT Z.MENUID, Z.MENUNAME, Z.MENUURL, Z.PARENTID, Z.PRIORITY ,Z.HASNEXT
+		 FROM Z_MENU Z 
+		WHERE Z.DISPLAY = 1
+		  AND Z.PARENTID = #{parentid}
+		ORDER BY Z.PRIORITY
+	</select>
+	
+	<!-- 菜单管理树 -->
+	<select id="getMenuTreeByParentId" resultType="menu" parameterType="java.util.Map">
+	   SELECT Z.MENUID, Z.MENUNAME, Z.MENUURL, Z.PARENTID, Z.PRIORITY ,Z.HASNEXT
+		 FROM Z_MENU Z 
+		WHERE Z.PARENTID = #{parentid}
+		ORDER BY Z.PRIORITY
+	</select>
+	
+	<!-- 获菜单列表 -->
+	<select id="getMenuList" resultType="menu" parameterType="java.util.Map">
+	   SELECT Z.MENUID, Z.MENUNAME, Z.MENUURL, Z.PARENTID, Z.PRIORITY ,Z.HASNEXT
+		 FROM Z_MENU Z 
+		<where>
+			<if test="parentid != null">
+				Z.PARENTID = #{parentid}
+	    	</if>
+		</where>
+		ORDER BY Z.PRIORITY
+	</select>
+	<!-- 获取菜单总数 -->
+	<select id="getMenuCount" parameterType="map" resultType="int">
+	   SELECT COUNT(1)
+		 FROM Z_MENU Z 
+		<where>
+			<if test="parentid != null and parent != '' ">
+				Z.PARENTID = #{parentid}
+	    	</if>
+		</where>
+	</select>
+	
+	<!-- get info by primary key -->
+ 	<select id="getMenuById" parameterType="string" resultMap="menuResult">
+	 	SELECT t.*
+	      FROM z_menu t 
+	     WHERE t.menuid = #{menuid}
+ 	</select>
+ 	<!-- info save -->
+	<insert id="saveMenu" parameterType="menu">
+		INSERT  INTO z_menu
+    	(
+	    	menuid,menuname,parentid,priority,hasnext,menuurl,display
+    	) 
+    	VALUES 
+    	(
+    		#{menuid},#{menuname},#{parentid},#{priority},#{hasnext},#{menuurl},#{display}
+	    )
+ 	</insert>
+ 	<!-- info modify -->
+	<update id="modifyMenu" parameterType="menu">
+		update z_menu
+ 		<set>
+ 			<if test="menuname != null">
+	    		menuname=#{menuname},
+	    	</if>
+	    	<if test="parentid != null">
+	    		parentid=#{parentid},
+	    	</if>
+	    	<if test="priority != null">
+	    		priority=#{priority},
+	    	</if>
+	    	<if test="hasnext != null">
+	    		hasnext=#{hasnext},
+	    	</if>
+ 			<if test="menuurl != null">
+	    		menuurl=#{menuurl},
+	    	</if>
+ 			<if test="display != null">
+	    		display=#{display},
+	    	</if>
+ 		</set>
+ 		<where>
+ 			menuid = #{menuid}
+ 		</where>
+ 	</update>
+ 	<!-- info delete -->
+	<delete id="deleteMenuById" parameterType="string"> 
+		DELETE FROM z_menu WHERE menuid = #{value}
+	</delete>
+</mapper>

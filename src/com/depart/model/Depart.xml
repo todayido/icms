@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.depart.model.Depart">
+	<resultMap type="depart" id="departResult">
+	   	<result property="depart_id" column="depart_id" />
+	   	<result property="parent_id" column="parent_id" />
+	   	<result property="has_next" column="has_next" />
+	   	<result property="name" column="name" />
+	   	<result property="number" column="number" />
+	   	<result property="priority" column="priority" />
+	   	<result property="is_show" column="is_show" />
+	   	<result property="create_time" column="create_time" />
+	</resultMap>
+	<!-- list -->
+	<select id="getDepartList" parameterType="map" resultType="map">
+		SELECT t.depart_id,t.parent_id,a.name parent_name,t.name,t.number,t.has_next,t.is_show,t.create_time  
+		  FROM z_depart t 
+     LEFT JOIN z_depart a
+		    ON t.parent_id=a.depart_id
+		<where>
+	    	<if test="name != null and name != ''">
+	    	and t.name like CONCAT(CONCAT('%', #{name}),'%')
+	    	</if>
+	    	<if test="parent_id != null and parent_id != ''">
+	    	and t.parent_id=#{parent_id}
+	    	</if>
+	    	<if test="is_show != null and is_show != ''">
+	    	and t.is_show=#{is_show}
+	    	</if>
+ 	    </where>
+ 	    ORDER BY t.priority desc
+	</select>
+	<!-- total count -->
+	<select id="getDepartCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM z_depart t
+		<where>
+	    	<if test="name != null and name != ''">
+	    	and t.name like CONCAT(CONCAT('%', #{name}),'%')
+	    	</if>
+	    	<if test="parent_id != null and parent_id != ''">
+	    	and t.parent_id=#{parent_id}
+	    	</if>
+	    	<if test="is_show != null and is_show != ''">
+	    	and t.is_show=#{is_show}
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getDepartById" parameterType="string" resultMap="departResult">
+	 	SELECT t.*
+	      FROM z_depart t 
+	     WHERE t.depart_id = #{depart_id}
+ 	</select>
+ 	<select id="getDepartMapById" parameterType="string" resultType="map">
+	 	SELECT t.depart_id,t.parent_id,a.name parent_name,t.name,t.number,t.has_next,t.is_show,t.create_time,t.priority
+		  FROM z_depart t 
+     LEFT JOIN z_depart a
+		    ON t.parent_id=a.depart_id
+	     WHERE t.depart_id = #{value}
+ 	</select>
+ 	<!-- info save -->
+	<insert id="saveDepart" parameterType="depart">
+		INSERT  INTO z_depart
+    	(
+	    	depart_id,parent_id,name,number,priority,is_show,create_time,has_next
+    	) 
+    	VALUES 
+    	(
+    		#{depart_id},#{parent_id},#{name},#{number},#{priority},#{is_show},#{create_time},#{has_next}
+	    )
+ 	</insert>
+ 	<!-- info modify -->
+	<update id="modifyDepart" parameterType="depart">
+		update z_depart
+ 		<set>
+ 			<if test="parent_id != null">
+	    		parent_id=#{parent_id},
+	    	</if>
+ 			<if test="name != null">
+	    		name=#{name},
+	    	</if>
+ 			<if test="number != null">
+	    		number=#{number},
+	    	</if>
+ 			<if test="priority != null">
+	    		priority=#{priority},
+	    	</if>
+ 			<if test="is_show != null">
+	    		is_show=#{is_show},
+	    	</if>
+ 			<if test="create_time != null">
+	    		create_time=#{create_time},
+	    	</if>
+	    	<if test="has_next != null">
+	    		has_next=#{has_next},
+	    	</if>
+ 		</set>
+ 		<where>
+ 			depart_id = #{depart_id}
+ 		</where>
+ 	</update>
+ 	<!-- info delete -->
+	<delete id="deleteDepartById" parameterType="string"> 
+		DELETE FROM z_depart WHERE depart_id = #{value}
+	</delete>
+	<select id="getDepartByParentId" parameterType="map" resultMap="departResult">
+		SELECT t.* 
+		  FROM z_depart t
+		<where>
+	    	<if test="parent_id != null">
+            and t.parent_id = #{parent_id}
+	    	</if>
+	    	<if test="is_show != null">
+	    	and t.is_show = #{is_show}
+	    	</if>
+ 	    </where>
+ 	    ORDER BY t.priority desc
+	</select>
+</mapper>

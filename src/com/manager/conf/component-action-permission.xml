@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="actionPermission">
+	<action id="actionPermissionTreeIndex" name="动作权限管理树" type="html" class="com.manager.controller.ActionPermissionController" method="actionPermissionTreeIndex">
+		<view name="动作权限首页">classes/com/manager/view/actionPermission/PermissionTree.ftl</view>
+	</action>
+	<action id="actionPermissionTree" name="动作权限管理树动作" type="json" class="com.manager.controller.ActionPermissionController" method="actionPermissionTree"/>
+	
+    <action id="actionPermissionIndex" name="动作权限首页" type="html" class="com.manager.controller.ActionPermissionController" method="actionPermissionIndex">
+        <view name="动作权限首页">classes/com/manager/view/actionPermission/actionPermissionList.ftl</view>
+    </action>
+    <action id="actionPermissionList" name="动作权限列表" type="json" class="com.manager.controller.ActionPermissionController" method="actionPermissionList"/>
+    <action id="actionPermissionAdd" name="动作权限新增" type="html" class="com.manager.controller.ActionPermissionController" method="actionPermissionAdd">
+       <view name="动作权限新增">classes/com/manager/view/actionPermission/actionPermissionAdd.ftl</view>
+    </action>
+    <action id="actionPermissionAddSubmit" name="动作权限新增提交" type="json" class="com.manager.controller.ActionPermissionController" method="actionPermissionAddSubmit"/>
+    <action id="actionPermissionModify" name="动作权限修改" type="html" class="com.manager.controller.ActionPermissionController" method="actionPermissionModify">
+       <view name="动作权限修改">classes/com/manager/view/actionPermission/actionPermissionModify.ftl</view>
+    </action>
+    <action id="actionPermissionModifySubmit" name="动作权限修改提交" type="json" class="com.manager.controller.ActionPermissionController" method="actionPermissionModifySubmit"/>
+    <action id="actionPermissionDelete" name="动作权限删除" type="json" class="com.manager.controller.ActionPermissionController" method="actionPermissionDelete"/>
+</actions>

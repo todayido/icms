@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newsproperty.model.Newsproperty">
+	
+	<resultMap type="newsproperty" id="newspropertyResult">
+	   	<result property="blockid" column="blockid" />
+	   	<result property="title" column="title" />
+	   	<result property="blockpage" column="blockpage" />
+	   	<result property="listpage" column="listpage" />
+	   	<result property="iscomments" column="iscomments" />
+	   	<result property="description" column="description" />
+	   	<result property="createtime" column="createtime" />
+	</resultMap>
+	<!-- list -->
+	<select id="getNewspropertyList" parameterType="map" resultMap="newspropertyResult">
+		SELECT t.* 
+		  FROM t_news_property t
+		<where>
+	    	<if test="blockid !=null and blockid !=''">
+	    	and t.blockid like CONCAT(CONCAT('%', #{blockid}),'%')
+	    	</if>
+	    	<if test="title !=null and title !=''">
+	    	and t.title like CONCAT(CONCAT('%', #{title}),'%')
+	    	</if>
+	    	and t.display =1
+ 	    </where>
+ 	    ORDER BY t.createtime desc
+	</select>
+	<!-- total count -->
+	<select id="getNewspropertyCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM t_news_property t
+		<where>
+	    	<if test="blockid !=null and blockid !=''">
+	    	and t.blockid like CONCAT(CONCAT('%', #{blockid}),'%')
+	    	</if>
+	    	<if test="title !=null and title !=''">
+	    	and t.title like CONCAT(CONCAT('%', #{title}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getNewspropertyById" parameterType="string" resultMap="newspropertyResult">
+	 	SELECT t.*
+	      FROM t_news_property t 
+	     WHERE t.blockid = #{blockid}
+ 	</select>
+ 	<!-- save info -->
+	<insert id="saveNewsproperty" parameterType="newsproperty">
+		INSERT  INTO t_news_property
+    	(
+	    	blockid,title,blockpage,listpage,iscomments,description,createtime
+    	) 
+    	VALUES 
+    	(
+    		#{blockid},#{title},#{blockpage},#{listpage},#{iscomments},#{description},#{createtime}
+	    )
+ 	</insert>
+ 	<!-- modify info -->
+	<update id="modifyNewsproperty" parameterType="newsproperty">
+		update t_news_property
+ 		<set>
+			title=#{title},blockpage=#{blockpage},listpage=#{listpage},iscomments=#{iscomments},description=#{description},createtime=#{createtime}
+ 		</set>
+ 		<where>
+ 			blockid = #{blockid}
+ 		</where>
+ 	</update>
+ 	<!-- delete info -->
+	<delete id="deleteNewspropertyById" parameterType="string"> 
+		DELETE FROM t_news_property WHERE blockid = #{value}
+	</delete>
+</mapper>

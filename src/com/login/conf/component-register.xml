@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions package="register">
+	<!-- 用户注册 -->
+    <action id="register" name="新用户注册" type="html" class="com.login.controller.RegisterController" method="register">
+       <view name="新用户注册">classes/com/login/view/register.ftl</view>
+    </action>
+    <action id="doRegister" name="新用户注册" type="html" class="com.login.controller.RegisterController" method="doRegister">
+    	<view name="新用户注册">classes/com/login/view/register.ftl</view>
+    </action>
+</actions>

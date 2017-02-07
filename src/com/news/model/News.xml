@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.news.model.News">
+	
+	<resultMap type="news" id="newsResult">
+	   	<result property="newsid" column="newsid" />
+	   	<result property="blockid" column="blockid" />
+	   	<result property="title" column="title" />
+	   	<result property="shorttitle" column="shorttitle" />
+	   	<result property="keywords" column="keywords" />
+	   	<result property="author" column="author" />
+	   	<result property="editor" column="editor" />
+	   	<result property="source" column="source" />
+	   	<result property="content" column="content" />
+	   	<result property="count" column="count" />
+	   	<result property="commentcount" column="commentcount" />
+	   	<result property="createtime" column="createtime" />
+	   	<result property="lastedittime" column="lastedittime" />
+	   	<result property="audit" column="audit" />
+	</resultMap>
+	<!-- list -->
+	<select id="getNewsList" parameterType="map" resultMap="newsResult">
+		SELECT t.* 
+		  FROM t_news t
+		<where>
+	    	<if test="blockid !=null and blockid !=''">
+	    	and t.blockid =#{blockid}
+	    	</if>
+	    	<if test="newsid !=null and newsid !=''">
+            and t.newsid=#{newsid}
+            </if>
+	    	<if test="title !=null and title !=''">
+	    	and t.title like CONCAT(CONCAT('%', #{title}),'%')
+	    	</if>
+ 	    </where>
+ 	    ORDER BY t.lastedittime desc
+	</select>
+	<!-- total count -->
+	<select id="getNewsCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM t_news t
+		<where>
+	    	<if test="blockid !=null and blockid !=''">
+            and t.blockid =#{blockid}
+            </if>
+            <if test="newsid !=null and newsid !=''">
+            and t.newsid=#{newsid}
+            </if>
+	    	<if test="title !=null and title !=''">
+	    	and t.title like CONCAT(CONCAT('%', #{title}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getNewsById" parameterType="string" resultMap="newsResult">
+	 	SELECT t.*
+	      FROM t_news t 
+	     WHERE t.newsid = #{newsid}
+ 	</select>
+ 	<!-- save info -->
+	<insert id="saveNews" parameterType="news">
+		INSERT  INTO t_news
+    	(
+	    	newsid,blockid,title,shorttitle,keywords,author,editor,source,content,count,commentcount,createtime,lastedittime,audit
+    	) 
+    	VALUES 
+    	(
+    		#{newsid},#{blockid},#{title},#{shorttitle},#{keywords},#{author},#{editor},#{source},#{content},#{count},#{commentcount},#{createtime},#{lastedittime},#{audit}
+	    )
+ 	</insert>
+ 	<!-- modify info -->
+	<update id="modifyNews" parameterType="news">
+		update t_news
+ 		<set>
+			blockid=#{blockid},title=#{title},shorttitle=#{shorttitle},keywords=#{keywords},author=#{author},editor=#{editor},source=#{source},content=#{content},count=#{count},commentcount=#{commentcount},lastedittime=#{lastedittime}
+ 		</set>
+ 		<where>
+ 			newsid = #{newsid}
+ 		</where>
+ 	</update>
+ 	<!-- delete info -->
+	<delete id="deleteNewsById" parameterType="string"> 
+		DELETE FROM t_news WHERE newsid = #{value}
+	</delete>
+	
+	<select id="getMgrMenuByParentId" resultType="map" parameterType="java.util.Map">
+        SELECT t.blockid, t.title, t.parentid, t.hasnext
+        FROM t_news_property t 
+        WHERE t.parentid = #{parentid}
+        ORDER BY t.priority
+    </select>
+</mapper>

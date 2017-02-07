@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="payLog">
+    <action id="payLogIndex" name="支付日志首页" type="html" class="com.payLog.controller.PaylogController" method="payLogIndex">
+        <view name="支付日志首页">classes/com/item/view/payLog/PaylogList.ftl</view>
+    </action>
+    <action id="payLogList" name="支付日志列表" type="json" class="com.payLog.controller.PaylogController" method="payLogList"/>
+    <action id="payLogAdd" name="支付日志新增" type="html" class="com.payLog.controller.PaylogController" method="payLogAdd">
+       <view name="支付日志新增">classes/com/item/view/payLog/PaylogAdd.ftl</view>
+    </action>
+    <action id="payLogAddSubmit" name="支付日志新增提交" type="json" class="com.payLog.controller.PaylogController" method="payLogAddSubmit"/>
+    <action id="payLogModify" name="支付日志修改" type="html" class="com.payLog.controller.PaylogController" method="payLogModify">
+       <view name="支付日志修改">classes/com/item/view/payLog/PaylogModify.ftl</view>
+    </action>
+    <action id="payLogModifySubmit" name="支付日志修改提交" type="json" class="com.payLog.controller.PaylogController" method="payLogModifySubmit"/>
+    <action id="payLogDelete" name="支付日志删除" type="json" class="com.payLog.controller.PaylogController" method="payLogDelete"/>
+    
+    <action id="audit" name="支付审核" type="html" class="com.payLog.controller.PaylogController" method="audit">
+       <view name="支付审核">classes/com/item/view/payLog/AuditPaylog.ftl</view>
+    </action>
+    <action id="auditSubmit" name="支付审核提交" type="json" class="com.payLog.controller.PaylogController" method="auditSubmit"/>
+    
+</actions>

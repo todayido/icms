@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="depart">
+	<action id="departMgrTreeIndex" name="组织管理树首页" type="html" class="com.depart.controller.DepartController" method="departMgrTreeIndex">
+    	<view name="组织结构选择">classes/com/depart/view/DepartMgrTree.ftl</view>
+    </action>
+    <action id="departMgrTree" name="组织管理树" type="json" class="com.depart.controller.DepartController" method="departMgrTree" />
+	
+    <action id="departIndex" name="组织结构首页" type="html" class="com.depart.controller.DepartController" method="departIndex">
+        <view name="组织结构首页">classes/com/depart/view/DepartList.ftl</view>
+    </action>
+    <action id="departList" name="组织结构列表" type="json" class="com.depart.controller.DepartController" method="departList"/>
+    <action id="departAdd" name="组织结构新增" type="html" class="com.depart.controller.DepartController" method="departAdd">
+       <view name="组织结构新增">classes/com/depart/view/DepartAdd.ftl</view>
+    </action>
+    <action id="departAddSubmit" name="组织结构新增提交" type="json" class="com.depart.controller.DepartController" method="departAddSubmit"/>
+    <action id="departModify" name="组织结构修改" type="html" class="com.depart.controller.DepartController" method="departModify">
+       <view name="组织结构修改">classes/com/depart/view/DepartModify.ftl</view>
+    </action>
+    <action id="departModifySubmit" name="组织结构修改提交" type="json" class="com.depart.controller.DepartController" method="departModifySubmit"/>
+    <action id="departDelete" name="组织结构删除" type="json" class="com.depart.controller.DepartController" method="departDelete"/>
+    
+    <action id="departTreeIndex" name="组织机构选择" type="html" class="com.depart.controller.DepartController" method="departTreeIndex">
+    	<view name="组织结构选择">classes/com/depart/view/DepartTree.ftl</view>
+    </action>
+    <action id="departTree" name="组织结构选择" type="json" class="com.depart.controller.DepartController" method="departTree" />
+    
+    <action id="departTreeShowIndex" name="组织结构展示" type="html" class="com.depart.controller.DepartController" method="departTreeShowIndex">
+    	<view name="组织结构展示">classes/com/depart/view/DepartTreeShow.ftl</view>
+    </action>
+    <action id="departTreeShow" name="组织结构展示" type="json" class="com.depart.controller.DepartController" method="departTreeShow" />
+</actions>

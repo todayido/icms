@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.item.model.Pay">
+	<resultMap type="pay" id="payResult">
+	   	<result property="pay_id" column="pay_id" />
+	   	<result property="user_id" column="user_id" />
+	   	<result property="user_name" column="user_name" />
+	   	<result property="user_jine" column="user_jine" />
+	   	<result property="user_dongjie" column="user_dongjie" />
+	   	<result property="zhifubao" column="zhifubao" />
+	   	<result property="zhifubao_name" column="zhifubao_name" />
+	   	<result property="yinhangka" column="yinhangka" />
+	   	<result property="yinhangka_name" column="yinhangka_name" />
+	   	<result property="weigui_cishu" column="weigui_cishu" />
+	   	<result property="anquanma" column="anquanma" />
+	</resultMap>
+	<!-- list -->
+	<select id="getPayList" parameterType="map" resultMap="payResult">
+		SELECT t.* 
+		  FROM t_user_pay t
+		<where>
+	    	<if test="user_name != null and user_name != ''">
+	    	and t.user_name like CONCAT(CONCAT('%', #{user_name}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- total count -->
+	<select id="getPayCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM t_user_pay t
+		<where>
+	    	<if test="user_name != null and user_name != ''">
+	    	and t.user_name like CONCAT(CONCAT('%', #{user_name}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getPayById" parameterType="string" resultMap="payResult">
+	 	SELECT t.*
+	      FROM t_user_pay t 
+	     WHERE t.pay_id = #{pay_id}
+ 	</select>
+ 	<!-- info save -->
+	<insert id="savePay" parameterType="pay">
+		INSERT  INTO t_user_pay
+    	(
+	    	pay_id,user_id,user_name,user_jine,user_dongjie,zhifubao,zhifubao_name,yinhangka,yinhangka_name,weigui_cishu,anquanma
+    	) 
+    	VALUES 
+    	(
+    		#{pay_id},#{user_id},#{user_name},#{user_jine},#{user_dongjie},#{zhifubao},#{zhifubao_name},#{yinhangka},#{yinhangka_name},#{weigui_cishu},#{anquanma}
+	    )
+ 	</insert>
+ 	<!-- info modify -->
+	<update id="modifyPay" parameterType="pay">
+		update t_user_pay
+ 		<set>
+ 			<if test="user_id != null">
+	    		user_id=#{user_id},
+	    	</if>
+ 			<if test="user_name != null">
+	    		user_name=#{user_name},
+	    	</if>
+ 			<if test="user_jine != null">
+	    		user_jine=#{user_jine},
+	    	</if>
+ 			<if test="user_dongjie != null">
+	    		user_dongjie=#{user_dongjie},
+	    	</if>
+ 			<if test="zhifubao != null">
+	    		zhifubao=#{zhifubao},
+	    	</if>
+ 			<if test="zhifubao_name != null">
+	    		zhifubao_name=#{zhifubao_name},
+	    	</if>
+ 			<if test="yinhangka != null">
+	    		yinhangka=#{yinhangka},
+	    	</if>
+ 			<if test="yinhangka_name != null">
+	    		yinhangka_name=#{yinhangka_name},
+	    	</if>
+ 			<if test="weigui_cishu != null">
+	    		weigui_cishu=#{weigui_cishu},
+	    	</if>
+ 		</set>
+ 		<where>
+ 			pay_id = #{pay_id}
+ 		</where>
+ 	</update>
+ 	<!-- info delete -->
+	<delete id="deletePayById" parameterType="string"> 
+		DELETE FROM t_user_pay WHERE pay_id = #{value}
+	</delete>
+	<update id="modifyWeiguiCishu" parameterType="pay">
+		update t_user_pay set weigui_cishu=#{weigui_cishu} where pay_id = #{pay_id}
+ 	</update>
+ 	<!-- 扣除相应金额 -->
+ 	<update id="kouChuJinE" parameterType="pay">
+ 		update t_user_pay set user_jine=user_jine-#{user_jine} where pay_id = #{pay_id}
+ 	</update>
+	<!-- 根据用户名获取用户的支付信息 -->
+	<select id="getPayByUserName" parameterType="string" resultType="pay">
+	 	SELECT t.*
+	      FROM t_user_pay t 
+	     WHERE t.user_name = #{user_name}
+ 	</select>
+ 	<!-- 充值审核通过，用户平台币增加 -->
+ 	<update id="paySuccess" parameterType="pay">
+		update t_user_pay set user_jine=(user_jine+#{money})
+ 		 where user_name = #{user_name} and user_id = #{user_id}
+ 	</update>
+ 	
+</mapper>

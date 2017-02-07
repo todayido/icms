@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="permission">
+    <action id="permissionIndex" name="功能权限首页" type="html" class="com.permission.controller.PermissionController" method="permissionIndex">
+        <view name="功能权限首页">classes/com/manager/view/functionPermission/PermissionList.ftl</view>
+    </action>
+    <action id="permissionList" name="功能权限列表" type="json" class="com.permission.controller.PermissionController" method="permissionList"/>
+    <action id="permissionAdd" name="功能权限新增" type="html" class="com.permission.controller.PermissionController" method="permissionAdd">
+       <view name="功能权限新增">classes/com/manager/view/functionPermission/PermissionAdd.ftl</view>
+    </action>
+    <action id="permissionAddSubmit" name="功能权限新增提交" type="json" class="com.permission.controller.PermissionController" method="permissionAddSubmit"/>
+    <action id="permissionModify" name="功能权限修改" type="html" class="com.permission.controller.PermissionController" method="permissionModify">
+       <view name="功能权限修改">classes/com/manager/view/functionPermission/PermissionModify.ftl</view>
+    </action>
+    <action id="permissionModifySubmit" name="功能权限修改提交" type="json" class="com.permission.controller.PermissionController" method="permissionModifySubmit"/>
+    <action id="permissionDelete" name="功能权限删除" type="json" class="com.permission.controller.PermissionController" method="permissionDelete"/>
+    
+    <!-- 权限所属的角色列表 开始 -->
+    <action id="permissionRoleListIndex" name="角色列表" type="html" class="com.manager.controller.PermissionController" method="permissionRoleListIndex">
+    	<view name="权限角色列表">classes/com/manager/view/functionPermission/PermissionRoleList.ftl</view>
+    </action>
+    <action id="permissionRoleList" name="权限角色列表" type="json" class="com.manager.controller.PermissionController" method="permissionRoleList" />
+    <action id="otherPermissionRoleList" name="非该用户的角色列表" type="json" class="com.manager.controller.PermissionController" method="otherPermissionRoleList" />
+    
+    <action id="permissionRoleDelete" name="权限角色删除" type="json" class="com.manager.controller.PermissionController" method="permissionRoleDelete" />
+    <action id="addRolesToPermission" name="权限角色增加" type="json" class="com.manager.controller.PermissionController" method="addRolesToPermission" />
+  	<!-- 权限所属的角色列表 结束 -->
+</actions>

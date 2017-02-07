@@ -1,0 +1,69 @@
+div.login{border-bottom:solid 1px #F5F5F5;width:100%;padding-left:30px;height:30px;line-height:30px;
+	background:url("/global/images/iconfont-zhuce.png") no-repeat;
+	background-size:26px;display:block;background-position:-3px;
+}
+a{
+	color:#000000;
+}
+a:hover{
+	text-decoration:none;
+}
+.ours{
+	padding:20px 0 20px 0;
+}
+.span.login-title{
+	width:100px;
+	padding-right:10px;
+}
+.icon-username{
+	height:27px;
+	width:27px;
+	line-height:27px;
+	background:#ccc url("../images/icon-label-login.png") no-repeat 7px 7px;
+	position:absolute;
+	margin-top:7px;
+	margin-left:5px;
+}
+.icon-password{
+	height:27px;
+	width:27px;
+	line-height:27px;
+	background:#ccc url("../images/icon-label-login.png") no-repeat 7px -30px;
+	position:absolute;
+	margin-top:7px;
+	margin-left:5px;
+}
+.div-form-item{
+	margin:auto;
+	display:block;
+	width:280px;
+	margin-top:15px;
+	position: relative;
+	text-align:center
+}
+.login-text{
+	width:240px;
+	height:33px;
+	padding:3px;
+	padding-left: 35px;
+	vertical-align: middle;
+	border: 1px solid #DEDEDE;
+	
+}
+/* 提交按钮  start*/
+.button-width-280{
+	width:280px;
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+	color:#FFFFFF;
+	cursor: pointer;
+}
+.red01{
+	border:solid 1px #F3726D;
+	background-color:#F3726D;
+}
+.red01:hover{
+	opacity:0.8;
+}
+/* 提交按钮 end */

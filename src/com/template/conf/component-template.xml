@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="template">
+    <action id="templateIndex" name="模板首页" type="html" class="com.template.controller.TemplateController" method="templateIndex">
+        <view name="模板首页">classes/com/template/view/TemplateList.ftl</view>
+    </action>
+    <action id="templateList" name="模板列表" type="json" class="com.template.controller.TemplateController" method="templateList"/>
+    <action id="templateAdd" name="模板新增" type="html" class="com.template.controller.TemplateController" method="templateAdd">
+       <view name="模板新增">classes/com/template/view/TemplateAdd.ftl</view>
+    </action>
+    <action id="templateAddSubmit" name="模板新增提交" type="json" class="com.template.controller.TemplateController" method="templateAddSubmit"/>
+    <action id="templateModify" name="模板修改" type="html" class="com.template.controller.TemplateController" method="templateModify">
+       <view name="模板修改">classes/com/template/view/TemplateModify.ftl</view>
+    </action>
+    <action id="templateModifySubmit" name="模板修改提交" type="json" class="com.template.controller.TemplateController" method="templateModifySubmit"/>
+    <action id="templateDelete" name="模板删除" type="json" class="com.template.controller.TemplateController" method="templateDelete"/>
+    
+    <action id="templateEdit" name="模板编辑" type="html" class="com.template.controller.TemplateController" method="templateEdit">
+        <view name="模板编辑">classes/com/template/view/TemplateEdit.ftl</view>
+    </action>
+    <action id="templateEditSubmit" name="模板编辑提交" type="json" class="com.template.controller.TemplateController" method="templateEditSubmit"/>
+</actions>

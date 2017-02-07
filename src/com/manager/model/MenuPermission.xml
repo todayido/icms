@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.manager.model.MenuPermission">
+	<resultMap type="menuPermission" id="menuPermissionResult">
+	   	<result property="permission_id" column="permission_id" />
+	   	<result property="permission_name" column="permission_name" />
+	   	<result property="parent_id" column="parent_id" />
+	   	<result property="priority" column="priority" />
+	   	<result property="has_next" column="has_next" />
+	   	<result property="resource" column="resource" />
+	   	<result property="description" column="description" />
+	</resultMap>
+	<!-- list -->
+	<select id="getMenuPermissionList" parameterType="map" resultMap="menuPermissionResult">
+		SELECT t.* 
+		  FROM z_menu_permission t
+		<where>
+	    	<if test="permission_name != null and permission_name != ''">
+	    	and t.permission_name like CONCAT(CONCAT('%', #{permission_name}),'%')
+	    	</if>
+	    	<if test="parent_id != null and parent_id != ''">
+	    	and t.parent_id = #{parent_id}
+	    	</if>
+ 	    </where>
+ 	    order by t.priority
+	</select>
+	<!-- total count -->
+	<select id="getMenuPermissionCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM z_menu_permission t
+		<where>
+	    	<if test="permission_name != null and permission_name != ''">
+	    	and t.permission_name like CONCAT(CONCAT('%', #{permission_name}),'%')
+	    	</if>
+	    	<if test="parent_id != null and parent_id != ''">
+	    	and t.parent_id = #{parent_id}
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getMenuPermissionById" parameterType="string" resultMap="menuPermissionResult">
+	 	SELECT t.*
+	      FROM z_menu_permission t 
+	     WHERE t.permission_id = #{permission_id}
+ 	</select>
+ 	<!-- info save -->
+	<insert id="saveMenuPermission" parameterType="menuPermission">
+		INSERT  INTO z_menu_permission
+    	(
+	    	permission_id,permission_name,parent_id,priority,has_next,resource,description
+    	) 
+    	VALUES 
+    	(
+    		#{permission_id},#{permission_name},#{parent_id},#{priority},#{has_next},#{resource},#{description}
+	    )
+ 	</insert>
+ 	<!-- info modify -->
+	<update id="modifyMenuPermission" parameterType="menuPermission">
+		update z_menu_permission
+ 		<set>
+ 			<if test="permission_name != null">
+	    		permission_name=#{permission_name},
+	    	</if>
+	    	<if test="parent_id != null">
+	    		parent_id=#{parent_id},
+	    	</if>
+	    	<if test="priority != null">
+	    		priority=#{priority},
+	    	</if>
+	    	<if test="has_next != null">
+	    		has_next=#{has_next},
+	    	</if>
+ 			<if test="resource != null">
+	    		resource=#{resource},
+	    	</if>
+ 			<if test="description != null">
+	    		description=#{description},
+	    	</if>
+ 		</set>
+ 		<where>
+ 			permission_id = #{permission_id}
+ 		</where>
+ 	</update>
+ 	<!-- info delete -->
+	<delete id="deleteMenuPermissionById" parameterType="string"> 
+		DELETE FROM z_menu_permission WHERE permission_id = #{value}
+	</delete>
+	
+	<select id="getMenuPermissionMenuByParentId" resultType="java.util.HashMap" parameterType="java.util.HashMap">
+        SELECT t.*
+         FROM z_menu_permission t
+        WHERE t.parent_id = #{parentid}
+        ORDER BY t.priority desc
+    </select>
+
+</mapper>

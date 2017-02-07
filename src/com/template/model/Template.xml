@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.template.model.Template">
+	
+	<resultMap type="template" id="templateResult">
+	   	<result property="templateid" column="templateid" />
+	   	<result property="templatename" column="templatename" />
+	   	<result property="description" column="description" />
+	   	<result property="createtime" column="createtime" />
+	   	<result property="isdefault" column="isdefault" />
+	</resultMap>
+	<!-- list -->
+	<select id="getTemplateList" parameterType="map" resultMap="templateResult">
+		SELECT t.* 
+		  FROM z_template t
+		<where>
+	    	<if test="templatename !=null and templatename !=''">
+	    	and t.templatename like CONCAT(CONCAT('%', #{templatename}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- total count -->
+	<select id="getTemplateCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM z_template t
+		<where>
+	    	<if test="templatename !=null and templatename !=''">
+	    	and t.templatename like CONCAT(CONCAT('%', #{templatename}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getTemplateById" parameterType="string" resultMap="templateResult">
+	 	SELECT t.*
+	      FROM z_template t 
+	     WHERE t.templateid = #{templateid}
+ 	</select>
+ 	<!-- save info -->
+	<insert id="saveTemplate" parameterType="template">
+		INSERT  INTO z_template
+    	(
+	    	templateid,templatename,description,createtime,isdefault
+    	) 
+    	VALUES 
+    	(
+    		#{templateid},#{templatename},#{description},#{createtime},#{isdefault}
+	    )
+ 	</insert>
+ 	<!-- modify info -->
+	<update id="modifyTemplate" parameterType="template">
+		update z_template
+ 		<set>
+			<if test="templatename !=null">
+	    		templatename=#{templatename},
+	    	</if>
+	    	<if test="description !=null">
+	    		description=#{description},
+	    	</if>
+	    	<if test="createtime !=null">
+	    		createtime=#{createtime},
+	    	</if>
+	    	<if test="isdefault !=null">
+	    		isdefault=#{isdefault},
+	    	</if>
+ 		</set>
+ 		<where>
+ 			templateid = #{templateid}
+ 		</where>
+ 	</update>
+ 	<!-- delete info -->
+	<delete id="deleteTemplateById" parameterType="string"> 
+		DELETE FROM z_template WHERE templateid = #{value}
+	</delete>
+	
+	<!-- 获取所有模板数据  -->
+	<select id="getAllTemplates" resultMap="templateResult">
+		SELECT t.templateid, t.templatename, t.description, t.createtime, t.isdefault
+		  FROM z_template t
+	  ORDER BY t.templatename desc
+	</select>
+</mapper>

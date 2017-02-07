@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="view">
+    <action id="viewIndex" name="视图首页" type="html" class="com.view.controller.ViewController" method="viewIndex">
+        <view name="视图首页">classes/com/view/view/ViewList.ftl</view>
+    </action>
+    <action id="viewList" name="视图列表" type="json" class="com.view.controller.ViewController" method="viewList"/>
+    <action id="viewAdd" name="视图新增" type="html" class="com.view.controller.ViewController" method="viewAdd">
+       <view name="视图新增">classes/com/view/view/ViewAdd.ftl</view>
+    </action>
+    <action id="viewAddSubmit" name="视图新增提交" type="json" class="com.view.controller.ViewController" method="viewAddSubmit"/>
+    <action id="viewModify" name="视图修改" type="html" class="com.view.controller.ViewController" method="viewModify">
+       <view name="视图修改">classes/com/view/view/ViewModify.ftl</view>
+    </action>
+    <action id="viewModifySubmit" name="视图修改提交" type="json" class="com.view.controller.ViewController" method="viewModifySubmit"/>
+    <action id="viewDelete" name="视图删除" type="json" class="com.view.controller.ViewController" method="viewDelete"/>
+    <action id="viewEdit" name="视图编辑" type="html" class="com.view.controller.ViewController" method="viewEdit">
+        <view name="视图编辑">classes/com/view/view/ViewEdit.ftl</view>
+    </action>
+    <action id="viewEditSubmit" name="视图编辑提交" type="json" class="com.view.controller.ViewController" method="viewEditSubmit"/>
+</actions>

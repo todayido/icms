@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="user">
+    <action id="userIndex" name="用户首页" type="html" class="com.manager.controller.UserController" method="userIndex">
+        <view name="用户首页">classes/com/manager/view/user/UserList.ftl</view>
+    </action>
+    <action id="userList" name="用户列表" type="json" class="com.manager.controller.UserController" method="userList"/>
+    <action id="userAdd" name="用户新增" type="html" class="com.manager.controller.UserController" method="userAdd">
+       <view name="用户新增">classes/com/manager/view/user/UserAdd.ftl</view>
+    </action>
+    <action id="userAddSubmit" name="用户新增提交" type="json" class="com.manager.controller.UserController" method="userAddSubmit"/>
+    <action id="userModify" name="后台用户修改" type="html" class="com.manager.controller.UserController" method="userModify">
+       <view name="后台用户修改">classes/com/manager/view/user/UserModify.ftl</view>
+    </action>
+    <action id="userModifySubmit" name="用户修改提交" type="json" class="com.manager.controller.UserController" method="userModifySubmit"/>
+    <action id="userDelete" name="用户删除" type="json" class="com.manager.controller.UserController" method="userDelete"/>
+    
+    <!-- 用户角色 开始  -->
+    <action id="userRoleListIndex" name="用户列表" type="html" class="com.manager.controller.UserRole" method="userRoleListIndex">
+    	<view name="用户角色列表">classes/com/manager/view/user/UserRoleList.ftl</view>
+    </action>
+    <action id="userRoleList" name="用户角色列表" type="json" class="com.manager.controller.UserRole" method="userRoleList" />
+    <action id="otherRoleList" name="非该用户的角色列表" type="json" class="com.manager.controller.UserRole" method="otherRoleList" />
+    
+    <action id="userRoleDelete" name="用户角色删除" type="json" class="com.manager.controller.UserRole" method="userRoleDelete"/>
+    <action id="addRolesToUser" name="添加用户角色" type="json" class="com.manager.controller.UserRole" method="addRolesToUser"/>
+    <!-- 用户角色 结束  -->
+    <action id="modifyPassword" name="修改密码" type="json" class="com.manager.controller.UserController" method="modifyPassword"/>
+    <action id="modifyUserInfo" name="前台修改用户信息" type="json" class="com.manager.controller.UserController" method="modifyUserInfo"/>
+</actions>

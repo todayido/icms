@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="role">
+    <action id="roleIndex" name="角色首页" type="html" class="com.manager.controller.RoleController" method="roleIndex">
+        <view name="角色首页">classes/com/manager/view/role/RoleList.ftl</view>
+    </action>
+    <action id="roleList" name="角色列表" type="json" class="com.manager.controller.RoleController" method="roleList"/>
+    <action id="roleAdd" name="角色新增" type="html" class="com.manager.controller.RoleController" method="roleAdd">
+       <view name="角色新增">classes/com/manager/view/role/RoleAdd.ftl</view>
+    </action>
+    <action id="roleAddSubmit" name="角色新增提交" type="json" class="com.manager.controller.RoleController" method="roleAddSubmit"/>
+    <action id="roleModify" name="角色修改" type="html" class="com.manager.controller.RoleController" method="roleModify">
+       <view name="角色修改">classes/com/manager/view/role/RoleModify.ftl</view>
+    </action>
+    <action id="roleModifySubmit" name="角色修改提交" type="json" class="com.manager.controller.RoleController" method="roleModifySubmit"/>
+    <action id="roleDelete" name="角色删除" type="json" class="com.manager.controller.RoleController" method="roleDelete"/>
+    
+    <!-- 菜单角色  开始  -->
+    <action id="menuRoleTreeIndex" name="角色包含的菜单，树形结构首页" type="html" class="com.manager.controller.RoleController" method="menuRoleTreeIndex">
+    	<view name="角色列表">classes/com/manager/view/role/MenuRoleTree.ftl</view>
+    </action>
+    <action id="menuRoleTree" name="菜角色包含的菜单，树形结构" type="json" class="com.manager.controller.RoleController" method="menuRoleTree" />
+    
+    <action id="deleteMenuPersmissionFromRole" name="从角色中删除菜单权限" type="json" class="com.manager.controller.RoleController" method="deleteMenuPersmissionFromRole"/>
+    <action id="addMenuPermissionToRole" name="在角色中添加菜单权限" type="json" class="com.manager.controller.RoleController" method="addMenuPermissionToRole"/>
+    <!-- 菜单角色  结束  -->
+    
+    <!-- 角包包含的权限 开始 -->
+    <action id="rolePermissionListIndex" name="角色权限列表" type="html" class="com.manager.controller.RoleController" method="rolePermissionListIndex">
+    	<view name="角色权限列表">classes/com/manager/view/role/RolePermissionList.ftl</view>
+    </action>
+    
+    <action id="rolePermissionList" name="角色权限列表" type="json" class="com.manager.controller.RoleController" method="rolePermissionList" />
+    <action id="otherRolePermissionList" name="非该角色的权限列表" type="json" class="com.manager.controller.RoleController" method="otherRolePermissionList" />
+    
+    <action id="rolePermissionDelete" name="角色权限删除" type="json" class="com.manager.controller.RoleController" method="rolePermissionDelete" />
+    <action id="addPermissionsToRole" name="角色权限增加" type="json" class="com.manager.controller.RoleController" method="addPermissionsToRole" />
+  	<!-- 角包包含的权限结束 -->
+    
+</actions>

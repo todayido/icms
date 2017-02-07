@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.item.model.Item">
+	<resultMap type="item" id="itemResult">
+	   	<result property="item_id" column="item_id" />
+	   	<result property="user_id" column="user_id" />
+	   	<result property="item_count" column="item_count" />
+	   	<result property="item_source" column="item_source" />
+	   	<result property="item_link" column="item_link" />
+	   	<result property="item_all_cost" column="item_all_cost" />
+	   	<result property="item_one_cost" column="item_one_cost" />
+	   	<result property="item_state" column="item_state" />
+	   	<result property="comments_after" column="comments_after" />
+	   	<result property="comments_stars" column="comments_stars" />
+	   	<result property="comments_content" column="comments_content" />
+	   	<result property="other_needs" column="other_needs" />
+	   	<result property="item_time" column="item_time" />
+	   	<result property="file_name" column="file_name" />
+	</resultMap>
+	<!-- list -->
+	<select id="getItemList" parameterType="map" resultMap="itemResult">
+		SELECT 
+		  ITEM_ID,
+		  USER_ID,
+		  ITEM_COUNT,
+		  ITEM_SOURCE,
+		  item_link,
+		  ITEM_ALL_COST,
+		  ITEM_ONE_COST,
+		  ITEM_STATE,
+		  COMMENTS_AFTER,
+		  COMMENTS_STARS,
+		  COMMENTS_CONTENT,
+		  OTHER_NEEDS,
+		  ITEM_TIME,
+		  FILE_NAME
+		FROM T_ITEM
+		<where>
+	    	<if test="user_id != null and user_id != ''">
+	    	and t.user_id like CONCAT(CONCAT('%', #{user_id}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- total count -->
+	<select id="getItemCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM t_item t
+		<where>
+	    	<if test="user_id != null and user_id != ''">
+	    	and t.user_id like CONCAT(CONCAT('%', #{user_id}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getItemById" parameterType="string" resultMap="itemResult">
+	 	SELECT t.*
+	      FROM t_item t 
+	     WHERE t.item_id = #{item_id}
+ 	</select>
+ 	<!-- info save -->
+	<insert id="saveItem" parameterType="item">
+		INSERT  INTO t_item
+    	(
+	    	item_id,user_id,item_count,item_source,item_link,item_all_cost,item_one_cost,item_state,comments_after,comments_stars,comments_content,other_needs,file_name,item_time
+    	) 
+    	VALUES 
+    	(
+    		#{item_id},#{user_id},#{item_count},#{item_source},#{item_link},#{item_all_cost},#{item_one_cost},#{item_state},#{comments_after},#{comments_stars},#{comments_content},#{other_needs},#{file_name,},#{item_time}
+	    )
+ 	</insert>
+ 	<!-- info modify -->
+	<update id="modifyItem" parameterType="item">
+		update t_item
+ 		<set>
+ 			<if test="user_id != null">
+	    		user_id=#{user_id},
+	    	</if>
+ 			<if test="item_count != null">
+	    		item_count=#{item_count},
+	    	</if>
+ 			<if test="item_source != null">
+	    		item_source=#{item_source},
+	    	</if>
+	    	<if test="item_all_cost != null">
+	    		item_all_cost=#{item_all_cost},
+	    	</if>
+ 			<if test="item_link != null">
+	    		item_link=#{item_link},
+	    	</if>
+ 			<if test="item_one_cost != null">
+	    		item_one_cost=#{item_one_cost},
+	    	</if>
+ 			<if test="item_state != null">
+	    		item_state=#{item_state},
+	    	</if>
+ 			<if test="comments_after != null">
+	    		comments_after=#{comments_after},
+	    	</if>
+ 			<if test="comments_stars != null">
+	    		comments_stars=#{comments_stars},
+	    	</if>
+ 			<if test="comments_content != null">
+	    		comments_content=#{comments_content},
+	    	</if>
+ 			<if test="other_needs != null">
+	    		other_needs=#{other_needs},
+	    	</if>
+	    	<if test="file_name != null">
+	    		file_name=#{file_name},
+	    	</if>
+ 			<if test="item_time != null">
+	    		item_time=#{item_time},
+	    	</if>
+ 		</set>
+ 		<where>
+ 			item_id = #{item_id}
+ 		</where>
+ 	</update>
+ 	<!-- info delete -->
+	<delete id="deleteItemById" parameterType="string"> 
+		DELETE FROM t_item WHERE item_id = #{value}
+	</delete>
+	
+	<!-- list -->
+	<select id="getItemBlock" parameterType="map" resultMap="itemResult">
+		SELECT ITEM_ID,CONCAT(SUBSTRING(USER_ID,1,1),'******') USER_ID,ITEM_COUNT,ITEM_SOURCE,ITEM_ALL_COST,
+		       ITEM_ONE_COST,ITEM_STATE,COMMENTS_AFTER,COMMENTS_STARS,COMMENTS_CONTENT,OTHER_NEEDS,ITEM_TIME
+		  FROM T_ITEM t
+		<where>
+			<if test="user_id != null and user_id != ''">
+	    	and t.user_id like CONCAT(CONCAT('%', #{user_id}),'%')
+	    	</if>
+	    	<if test="item_state != null and item_state != ''">
+	    	and t.item_state=#{item_state}
+	    	</if>
+	    	<if test="jin_min != null and jin_min != ''">
+	    	and t.item_one_cost &gt;= #{jin_min}
+	    	</if>
+	    	<if test="jin_max != null and jin_max != ''">
+	    	and t.item_one_cost &lt;= #{jin_max}
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- total count -->
+	<select id="getItemBlockCount" parameterType="map" resultType="int">
+		SELECT COUNT(0)
+		  FROM T_ITEM t
+		<where>
+	    	<if test="user_id != null and user_id != ''">
+	    	and t.user_id like CONCAT(CONCAT('%', #{user_id}),'%')
+	    	</if>
+	    	<if test="item_state != null and item_state != ''">
+	    	and t.item_state=#{item_state}
+	    	</if>
+	    	<if test="jin_min != null and jin_min != ''">
+	    	and t.item_one_cost &gt;= #{jin_min}
+	    	</if>
+	    	<if test="jin_max != null and jin_max != ''">
+	    	and t.item_one_cost &lt;= #{jin_max}
+	    	</if>
+ 	    </where>
+	</select>
+</mapper>

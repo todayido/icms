@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions package="login">
+	<!-- 前台登陆 -->
+    <action id="login" name="用户登录" type="html" class="com.login.controller.LoginController" method="login">
+       <view name="用户登录">classes/com/login/view/login.ftl</view>
+    </action>
+    <action id="doLogin" name="用户登录" type="html" class="com.login.controller.LoginController" method="doLogin">
+        <view name="用户登录">classes/com/login/view/login.ftl</view>
+    </action>
+    <action id="logout" name="注销" type="html" class="com.login.controller.LoginController" method="logout">
+        <view name="注销">classes/com/login/view/ManageLogin.ftl</view>
+     </action>
+     
+    <!-- 后台登陆 -->
+    <action id="manageLogin" name="后台登录" type="html" class="com.login.controller.LoginController" method="manageLogin">
+        <view name="后台登录">classes/com/login/view/ManageLogin.ftl</view>
+     </action>
+     <action id="doManageLogin" name="后台登录" type="html" class="com.login.controller.LoginController" method="doManageLogin">
+        <view name="后台登录">classes/com/login/view/ManageLogin.ftl</view>
+     </action>
+     <action id="manageLogout" name="注销" type="html" class="com.login.controller.LoginController" method="manageLogout">
+        <view name="注销">classes/com/login/view/ManageLogin.ftl</view>
+     </action>
+</actions>

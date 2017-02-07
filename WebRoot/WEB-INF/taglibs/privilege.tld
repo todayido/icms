@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
+    
+  <description>SG 1.0 core library</description>
+  <display-name>SG core</display-name>
+  <tlib-version>1.0</tlib-version>
+  <short-name>privilege</short-name>
+  <uri>http://shaoguang.com/core/tld/privilege</uri>
+  <tag>
+       <name>hasRole</name>
+	   <tag-class>com.core.controller.PrivilegeTag</tag-class>
+	   <body-content>JSP</body-content>
+       <attribute>
+          <name>roleID</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+       </attribute>
+  </tag>
+</taglib>

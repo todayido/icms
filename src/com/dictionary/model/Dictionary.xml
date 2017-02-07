@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dictionary.model.Dictionary">
+	<resultMap type="dictionary" id="dictionaryResult">
+	   	<result property="dic_id" column="dic_id" />
+	   	<result property="dic_name" column="dic_name" />
+	   	<result property="dic_key" column="dic_key" />
+	   	<result property="dic_value" column="dic_value" />
+	   	<result property="description" column="description" />
+	</resultMap>
+	<!-- list -->
+	<select id="getDictionaryList" parameterType="map" resultMap="dictionaryResult">
+		SELECT t.* 
+		  FROM z_dictionary t
+		<where>
+	    	<if test="dic_name != null and dic_name != ''">
+	    	and t.dic_name like CONCAT(CONCAT('%', #{dic_name}),'%')
+	    	</if>
+ 	    </where>
+ 	    ORDER BY t.dic_name
+	</select>
+	<!-- total count -->
+	<select id="getDictionaryCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM z_dictionary t
+		<where>
+	    	<if test="dic_name != null and dic_name != ''">
+	    	and t.dic_name like CONCAT(CONCAT('%', #{dic_name}),'%')
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getDictionaryById" parameterType="string" resultMap="dictionaryResult">
+	 	SELECT t.*
+	      FROM z_dictionary t 
+	     WHERE t.dic_id = #{dic_id}
+ 	</select>
+ 	<!-- info save -->
+	<insert id="saveDictionary" parameterType="dictionary">
+		INSERT  INTO z_dictionary
+    	(
+	    	dic_id,dic_name,dic_key,dic_value,description
+    	) 
+    	VALUES 
+    	(
+    		#{dic_id},#{dic_name},#{dic_key},#{dic_value},#{description}
+	    )
+ 	</insert>
+ 	<!-- info modify -->
+	<update id="modifyDictionary" parameterType="dictionary">
+		update z_dictionary
+ 		<set>
+ 			<if test="dic_name != null">
+	    		dic_name=#{dic_name},
+	    	</if>
+ 			<if test="dic_key != null">
+	    		dic_key=#{dic_key},
+	    	</if>
+ 			<if test="dic_value != null">
+	    		dic_value=#{dic_value},
+	    	</if>
+ 			<if test="description != null">
+	    		description=#{description},
+	    	</if>
+ 		</set>
+ 		<where>
+ 			dic_id = #{dic_id}
+ 		</where>
+ 	</update>
+ 	<!-- info delete -->
+	<delete id="deleteDictionaryById" parameterType="string"> 
+		DELETE FROM z_dictionary WHERE dic_id = #{value}
+	</delete>
+	<select id="getDictionaryListByName" parameterType="string" resultMap="dictionaryResult">
+		SELECT t.* 
+		  FROM z_dictionary t
+		 WHERE t.dic_name=#{value}
+	</select>
+</mapper>

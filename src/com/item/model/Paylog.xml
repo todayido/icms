@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.item.model.Paylog">
+	<resultMap type="payLog" id="payLogResult">
+	   	<result property="user_pay_log_id" column="user_pay_log_id" />
+	   	<result property="user_id" column="user_id" />
+	   	<result property="user_name" column="user_name" />
+	   	<result property="pay_zhanghao" column="pay_zhanghao" />
+	   	<result property="money" column="money" />
+	   	<result property="type" column="type" />
+	   	<result property="beizhu" column="beizhu" />
+	   	<result property="apply_time" column="apply_time" />
+	   	<result property="state" column="state" />
+	   	<result property="reason" column="reason" />
+	   	<result property="check_time" column="check_time" />
+	</resultMap>
+	<!-- list -->
+	<select id="getPaylogList" parameterType="map" resultMap="payLogResult">
+		SELECT t.* 
+		  FROM t_user_pay_log t
+		<where>
+	    	<if test="user_name != null and user_name != ''">
+	    	and t.user_name like CONCAT(CONCAT('%', #{user_name}),'%')
+	    	</if>
+	    	<if test="state != null and state != ''">
+	    	and t.state=#{state}
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- total count -->
+	<select id="getPaylogCount" parameterType="map" resultType="int">
+		SELECT COUNT(1) 
+		  FROM t_user_pay_log t
+		<where>
+	    	<if test="user_name != null and user_name != ''">
+	    	and t.user_name like CONCAT(CONCAT('%', #{user_name}),'%')
+	    	</if>
+	    	<if test="state != null and state != ''">
+	    	and t.state=#{state}
+	    	</if>
+ 	    </where>
+	</select>
+	<!-- get info by primary key -->
+ 	<select id="getPaylogById" parameterType="string" resultMap="payLogResult">
+	 	SELECT t.*
+	      FROM t_user_pay_log t 
+	     WHERE t.user_pay_log_id = #{user_pay_log_id}
+ 	</select>
+ 	<!-- info save -->
+	<insert id="savePaylog" parameterType="payLog">
+		INSERT  INTO t_user_pay_log
+    	(
+	    	user_pay_log_id,user_id,user_name,pay_zhanghao,money,type,beizhu,apply_time,state,reason,check_time
+    	) 
+    	VALUES 
+    	(
+    		#{user_pay_log_id},#{user_id},#{user_name},#{pay_zhanghao},#{money},#{type},#{beizhu},#{apply_time},#{state},#{reason},#{check_time}
+	    )
+ 	</insert>
+ 	<!-- info modify -->
+	<update id="modifyPaylog" parameterType="payLog">
+		update t_user_pay_log
+ 		<set>
+ 			<if test="user_pay_log_id != null">
+	    		user_pay_log_id=#{user_pay_log_id},
+	    	</if>
+ 			<if test="user_id != null">
+	    		user_id=#{user_id},
+	    	</if>
+ 			<if test="user_name != null">
+	    		user_name=#{user_name},
+	    	</if>
+	    	<if test="pay_zhanghao != null">
+	    		pay_zhanghao=#{pay_zhanghao},
+	    	</if>
+ 			<if test="money != null">
+	    		money=#{money},
+	    	</if>
+ 			<if test="type != null">
+	    		type=#{type},
+	    	</if>
+ 			<if test="beizhu != null">
+	    		beizhu=#{beizhu},
+	    	</if>
+ 			<if test="apply_time != null">
+	    		apply_time=#{apply_time},
+	    	</if>
+ 			<if test="state != null">
+	    		state=#{state},
+	    	</if>
+ 			<if test="reason != null">
+	    		reason=#{reason},
+	    	</if>
+ 			<if test="check_time != null">
+	    		check_time=#{check_time},
+	    	</if>
+ 		</set>
+ 		<where>
+ 			user_pay_log_id = #{user_pay_log_id}
+ 		</where>
+ 	</update>
+ 	<!-- info delete -->
+	<delete id="deletePaylogById" parameterType="string"> 
+		DELETE FROM t_user_pay_log WHERE user_pay_log_id = #{value}
+	</delete>
+</mapper>

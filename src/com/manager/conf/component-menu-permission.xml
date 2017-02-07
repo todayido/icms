@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="menuPermission">
+	<action id="menuPermissionTreeIndex" name="菜单权限管理树" type="html" class="com.manager.controller.MenuPermissionController" method="menuPermissionTreeIndex">
+		<view name="菜单权限首页">classes/com/manager/view/menuPermission/MenuPermissionTree.ftl</view>
+	</action>
+	<action id="menuPermissionTree" name="菜单权限管理树菜单" type="json" class="com.manager.controller.MenuPermissionController" method="menuPermissionTree"/>
+	
+    <action id="menuPermissionIndex" name="菜单权限首页" type="html" class="com.manager.controller.MenuPermissionController" method="menuPermissionIndex">
+        <view name="菜单权限首页">classes/com/manager/view/menuPermission/MenuPermissionList.ftl</view>
+    </action>
+    <action id="menuPermissionList" name="菜单权限列表" type="json" class="com.manager.controller.MenuPermissionController" method="menuPermissionList"/>
+    <action id="menuPermissionAdd" name="菜单权限新增" type="html" class="com.manager.controller.MenuPermissionController" method="menuPermissionAdd">
+       <view name="菜单权限新增">classes/com/manager/view/menuPermission/MenuPermissionAdd.ftl</view>
+    </action>
+    <action id="menuPermissionAddSubmit" name="菜单权限新增提交" type="json" class="com.manager.controller.MenuPermissionController" method="menuPermissionAddSubmit"/>
+    <action id="menuPermissionModify" name="菜单权限修改" type="html" class="com.manager.controller.MenuPermissionController" method="menuPermissionModify">
+       <view name="菜单权限修改">classes/com/manager/view/menuPermission/MenuPermissionModify.ftl</view>
+    </action>
+    <action id="menuPermissionModifySubmit" name="菜单权限修改提交" type="json" class="com.manager.controller.MenuPermissionController" method="menuPermissionModifySubmit"/>
+    <action id="menuPermissionDelete" name="菜单权限删除" type="json" class="com.manager.controller.MenuPermissionController" method="menuPermissionDelete"/>
+</actions>

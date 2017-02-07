@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="fragment">
+    <action id="fragmentIndex" name="单页首页" type="html" class="com.fragment.controller.FragmentController" method="fragmentIndex">
+        <view name="单页首页">classes/com/fragment/view/FragmentList.ftl</view>
+    </action>
+    <action id="fragmentList" name="单页列表" type="json" class="com.fragment.controller.FragmentController" method="fragmentList"/>
+    <action id="fragmentAdd" name="单页新增" type="html" class="com.fragment.controller.FragmentController" method="fragmentAdd">
+       <view name="单页新增">classes/com/fragment/view/FragmentAdd.ftl</view>
+    </action>
+    <action id="fragmentAddSubmit" name="单页新增提交" type="json" class="com.fragment.controller.FragmentController" method="fragmentAddSubmit"/>
+    <action id="fragmentModify" name="单页修改" type="html" class="com.fragment.controller.FragmentController" method="fragmentModify">
+       <view name="单页修改">classes/com/fragment/view/FragmentModify.ftl</view>
+    </action>
+    <action id="fragmentModifySubmit" name="单页修改提交" type="json" class="com.fragment.controller.FragmentController" method="fragmentModifySubmit"/>
+    <action id="fragmentDelete" name="单页删除" type="json" class="com.fragment.controller.FragmentController" method="fragmentDelete"/>
+    <action id="fragmentEdit" name="单页编辑" type="html" class="com.fragment.controller.FragmentController" method="fragmentEdit">
+        <view name="单页编辑">classes/com/fragment/view/FragmentEdit.ftl</view>
+    </action>
+    <action id="fragmentEditSubmit" name="单页编辑提交" type="json" class="com.fragment.controller.FragmentController" method="fragmentEditSubmit"/>
+    
+    <action id="fragmentBlock" name="单页页面" type="html" class="com.fragment.controller.FragmentBlock">
+        <view name="单页页面">classes/com/fragment/view/v/FragmentBlock.ftl</view>
+    </action>
+    
+</actions>

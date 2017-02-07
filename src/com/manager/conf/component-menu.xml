@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<actions package="menu">
+
+	<action id="menuTreeIndex" name="菜单管理树" type="html" class="com.manager.controller.MenuController" method="menuTreeIndex">
+		<view name="菜单权限首页">classes/com/manager/view/menu/MenuTree.ftl</view>
+	</action>
+	<action id="menuTree" name="菜单管理树菜单" type="json" class="com.manager.controller.MenuController" method="menuTree"/>
+	
+    <action id="menuIndex" name="菜单首页" type="html" class="com.manager.controller.MenuController" method="menuIndex">
+        <view name="菜单首页">classes/com/manager/view/menu/MenuList.ftl</view>
+    </action>
+    <action id="menuList" name="菜单列表" type="json" class="com.manager.controller.MenuController" method="menuList"/>
+    <action id="menuAdd" name="菜单新增" type="html" class="com.manager.controller.MenuController" method="menuAdd">
+       <view name="菜单新增">classes/com/manager/view/menu/MenuAdd.ftl</view>
+    </action>
+    <action id="menuAddSubmit" name="菜单新增提交" type="json" class="com.manager.controller.MenuController" method="menuAddSubmit"/>
+    <action id="menuModify" name="菜单修改" type="html" class="com.manager.controller.MenuController" method="menuModify">
+       <view name="菜单修改">classes/com/manager/view/menu/MenuModify.ftl</view>
+    </action>
+    <action id="menuModifySubmit" name="菜单修改提交" type="json" class="com.manager.controller.MenuController" method="menuModifySubmit"/>
+    <action id="menuDelete" name="菜单删除" type="json" class="com.manager.controller.MenuController" method="menuDelete"/>
+</actions>
